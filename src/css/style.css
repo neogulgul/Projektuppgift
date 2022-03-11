@@ -1,21 +1,44 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/Montserrat/static/Montserrat-Medium.ttf);
+}
+
 :root {
-    --background: #fff;
-    --background-alt: ;
-    --foreground: #000;
-    --foreground-akt: ;
+    --background: #282a36;
+    --background-alt: #21222c;
+    --foreground: #f8f8f2;
+    --foreground-alt: ;
+    --highlight: ;
+    --main: #eda920;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Montserrat";
+    font-size: 15px;
     color: var(--foreground);
 }
 
 body {
     overflow-x: hidden;
     background-color: var(--background);
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--foreground);
     transition: 0.3s;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* ==================================================
@@ -27,42 +50,145 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
     height: 75px;
-    border-bottom: 1px solid #bdbdbd;
+    user-select: none;
+    background-color: var(--background);
 }
 
-header input {
-    width: 400px;
-    height: 40px;
-    padding: 0 20px;
-    border: 1px solid #000;
-    border-radius: 25px;
-    outline: none;
+header .logo {
+    position: absolute;
+    left: 25px;
 }
 
-#light-switch {
+.logo svg {
+    fill: var(--main);
+}
+
+.logo p {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.icons {
     position: absolute;
     right: 25px;
-    width: 50px;
-    height: 25px;
-    border-radius: 25px;
-    box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.6);
-    background-color: #999;
+    display: flex;
+    gap: 10px;
 }
 
-#light-switch:hover {
+#search-field {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+#search-field input {
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--background-alt);
+}
+
+#search-field input:focus {
+    outline: 2px solid var(--main);
+}
+
+#search-field svg {
+    position: absolute;
+    right: 10px;
+}
+
+/* ==================================================
+    # nav styling
+================================================== */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 50px;
+    user-select: none;
+    background-color: var(--background);
+}
+
+.nav-links {
+    display: flex;
+    gap: 100px;
+}
+
+.nav-links a {
+    height: 50px;
+}
+
+.nav-links li:hover svg {
+    fill: var(--main);
+}
+
+li.browse-products {
     cursor: pointer;
 }
 
-#light-switch #switch {
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
-    box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.3);
-    background-color: #ccc;
-    transition: 0.3s;
+li.browse-products.active svg:last-child {
+    transform: rotate(180deg);
 }
 
-#light-switch #switch.dark {
-    margin-left: 25px;
+section.browse-products {
+    position: absolute;
+    top: -100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 50px;
+    width: 100vw;
+    transition: 0.3s;
+    background-color: var(--background-alt);
 }
+
+section.browse-products.active {
+    top: 125px;
+}
+
+section.browse-products a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid var(--foreground);
+    background-color: var(--background);
+}
+
+section.browse-products a:hover {
+    border-color: var(--main);
+    color: var(--main);
+}
+
+section.browse-products img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ==================================================
+    # main styling
+================================================== */
+
+main {}
+
+/* ==================================================
+    # footer styling
+================================================== */
+
+footer {}

@@ -1,12 +1,7 @@
-let modeSwitch = document.querySelector("#light-switch")
+let browseProducts = document.querySelector("li.browse-products")
+let browseProductsSection = document.querySelector("section.browse-products")
 
-modeSwitch.onclick = () => {
-    document.querySelector("#switch").classList.toggle("dark")
-    if (document.querySelector("#switch").classList.contains("dark")) { // switch to dark mode
-        document.documentElement.style.setProperty("--background", "#282a36")
-        document.documentElement.style.setProperty("--foreground", "#f8f8f2")
-    } else {                                                            // switch to light mode
-        document.documentElement.style.setProperty("--background", "#fff")
-        document.documentElement.style.setProperty("--foreground", "#000")
-    }
+browseProducts.onclick = () => {
+    browseProducts.classList.toggle("active")
+    browseProductsSection.classList.toggle("active")
 }
