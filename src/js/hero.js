@@ -7,12 +7,9 @@ let heroImages = document.querySelector("#hero-images").children
 
 // creating dots
 for (i = 0; i < heroImages.length; i++) {
-    let fill = ""
-    if (i === 0) {
-        fill = " fill"
-    }
-    dotsContainer.innerHTML += `<div class="dot${fill}"></div>`
+    dotsContainer.innerHTML += `<div class="dot"></div>`
 }
+dots[0].classList.add("fill")
 
 // defaulting to first image
 let initialTranslation = 50 * heroImages.length - 50
