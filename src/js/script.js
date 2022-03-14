@@ -1,3 +1,11 @@
+// input
+let input = document.querySelector("#search-field input")
+let cross = document.querySelector("#search-field svg:first-of-type")
+
+cross.onclick = () => { // todo: make it so you can continue typing after hitting the cross
+    input.value = ""
+}
+
 // browse products drop-down
 let browseProductsLink = document.querySelector("li.browse-products")
 let browseProductsSection = document.querySelector("section.browse-products")

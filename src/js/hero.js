@@ -83,7 +83,7 @@ rightArrow.onclick = () => {
 }
 
 let slideTime = 0
-let changeSlide = 10 // seconds
+const changeSlide = 10 // seconds
 
 setInterval(function() {
     slideTime += 1
