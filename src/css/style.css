@@ -81,6 +81,8 @@ header {
 }
 
 #logo svg {
+    width: 2em;
+    height: 2em;
     fill: var(--main);
 }
 
@@ -98,13 +100,47 @@ header {
     gap: 25px;
 }
 
-#icons svg:hover {
-    scale: 1.1;
+#icons svg {
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    box-sizing: content-box;
+    transition: 0.3s;
 }
 
-#logo svg, #icons svg {
-    width: 2em;
-    height: 2em;
+#icons a:hover svg {
+    fill: var(--main);
+    border: 1px solid var(--main);
+    background-color: var(--background-alt);
+}
+
+#cart {
+    position: relative;
+}
+
+#cart div {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--background);
+    border-radius: 10px;
+    font-size: 10px;
+    transition: 0.3s;
+    background-color: var(--foreground);
+    color: var(--background);
+}
+
+#cart:hover div {
+    border-color: var(--background-alt);
+    background-color: var(--main);
+    color: var(--background-alt);
 }
 
 #search-field {

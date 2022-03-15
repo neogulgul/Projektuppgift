@@ -2,15 +2,24 @@
 let input = document.querySelector("#search-field input")
 let cross = document.querySelector("#search-field svg:last-of-type")
 
-input.onkeydown = (event) => {
-    console.log(getComputedStyle(cross).display)
-    if (getComputedStyle(cross).display === "none") {
-        cross.style.display = "inline"
-    }
+input.addEventListener("focus", () => {
+    cross.style.display = "inline"
+})
+
+input.onclick = (event) => {
+    event.stopPropagation()
 }
 
-cross.onclick = () => { // todo: make it so you can continue typing after hitting the cross
+cross.onclick = (event) => {
     input.value = ""
+    input.focus()
+    event.stopPropagation()
+}
+// cart notice
+let cartNotice = document.querySelector("#cart div")
+console.log(cartNotice.innerText)
+if (cartNotice.innerText !== "") {
+    cartNotice.style.display = "flex"
 }
 
 // browse products drop-down
@@ -27,7 +36,7 @@ browseProductsSection.onclick = (event) => {
 }
 
 document.body.onclick = (event) => {
-    if (input.value === "") {
+    if (cross.style.display = "inline") {
         cross.style.display = "none"
     }
 
