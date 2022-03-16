@@ -87,7 +87,6 @@ const changeSlide = 10 // seconds
 
 setInterval(function() {
     slideTime += 1
-    console.log(slideTime) // remove this later
     if (slideTime === changeSlide) {
         arrow("right")
     }

@@ -7,9 +7,9 @@
     --background:       #282a36;
     --background-alt:   #21222c;
     --foreground:       #f8f8f2;
-    --foreground-alt:   #;
+    --foreground-alt:   #666666;
     --main:             #eda920;
-    --highlight:        #;
+    --main-alt:         #eda92020;
 }
 
 * {
@@ -59,13 +59,18 @@ h1 {
 ================================================== */
 
 header {
+    height: 125px;
+    user-select: none;
+}
+
+header section:first-of-type {
     position: relative;
     z-index: 100;
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    user-select: none;
     background-color: var(--background);
 }
 
@@ -147,7 +152,7 @@ header {
     align-items: center;
     width: 100%;
     max-width: 500px;
-    height: 75px;
+    height: calc(100% * 0.6);
 }
 
 #search-field input {
@@ -171,7 +176,6 @@ header {
 #search-field svg:last-of-type {
     position: absolute;
     right: 10px;
-    display: none;
     cursor: pointer;
 }
 
@@ -183,6 +187,7 @@ nav {
     display: flex;
     justify-content: center;
     user-select: none;
+    height: calc(100% * 0.4);
     background-color: var(--background);
 }
 
@@ -192,7 +197,7 @@ nav {
 }
 
 #nav-links a {
-    height: 50px;
+    height: 100%;
 }
 
 #nav-links svg {
@@ -217,15 +222,15 @@ li.browse-products.active svg:last-child {
 
 section.browse-products {
     position: absolute;
-    top: -400px;
+    top: calc((100vh - 125px) / -2);
     z-index: 10;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
     width: 100vw;
-    height: 400px;
-    padding: 50px;
-    overflow-x: scroll;
+    height: calc((100vh - 125px) / 2);
+    padding: 20px;
     transition: 0.3s;
     background-color: var(--background-alt);
 }
@@ -239,20 +244,23 @@ section.browse-products a {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
+    width: calc(25% - 60px / 4);
+    height: calc(50% - 10px);
     padding: 20px;
-    border: 1px solid var(--foreground);
+    border: 1px solid var(--foreground-alt);
     background-color: var(--background);
+    color: var(--foreground);
+    transition: 0.3s;
 }
 
 section.browse-products a:hover {
-    border-color: var(--main);
-    color: var(--main);
+    box-shadow: inset 0 0 0 2px var(--main);
+    background-color: var(--main-alt);
 }
 
 section.browse-products a img {
-    width: 200px;
-    height: 200px;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     object-position: center;
     object-fit: contain;
 }
@@ -346,4 +354,19 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 50px;
+}
+
+/* ==================================================
+    # media queries
+================================================== */
+
+@media screen and (max-width: 1024px) {
+    #logo p {
+        display: none;
+    }
+
+    #search-field {
+        position: absolute;
+        top: 125px;
+    }
 }
