@@ -1,0 +1,15 @@
+@import "/src/css/style.css";
+
+#components-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: var(--main);
+}
+
+#components-sidebar {}
+
+#components-products {}

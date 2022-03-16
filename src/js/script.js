@@ -6,10 +6,6 @@ input.addEventListener("focus", () => {
     cross.style.display = "inline"
 })
 
-input.onclick = (event) => {
-    event.stopPropagation()
-}
-
 cross.onclick = (event) => {
     input.value = ""
     input.focus()
@@ -36,7 +32,7 @@ browseProductsSection.onclick = (event) => {
 }
 
 document.body.onclick = (event) => {
-    if (cross.style.display = "inline") {
+    if (cross.style.display = "inline" && event.target !== input) {
         cross.style.display = "none"
     }
 

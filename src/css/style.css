@@ -105,14 +105,12 @@ header {
     height: 25px;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0);
     box-sizing: content-box;
     transition: 0.3s;
 }
 
 #icons a:hover svg {
     fill: var(--main);
-    border: 1px solid var(--main);
     background-color: var(--background-alt);
 }
 
