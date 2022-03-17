@@ -7,7 +7,7 @@
     --background:       #282a36;
     --background-alt:   #21222c;
     --foreground:       #f8f8f2;
-    --foreground-alt:   #666666;
+    --foreground-alt:   #929292;
     --main:             #eda920;
     --main-alt:         #eda92020;
 }
@@ -134,7 +134,7 @@ header section:first-of-type {
     height: 15px;
     border: 1px solid var(--background);
     border-radius: 10px;
-    font-size: 10px;
+    font-size: 50%;
     transition: 0.3s;
     background-color: var(--foreground);
     color: var(--background);

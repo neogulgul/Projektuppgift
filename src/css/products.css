@@ -1,5 +1,60 @@
 @import "/src/css/style.css";
 
+#banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    font-size: 2em;
+    text-transform: capitalize;
+    background-color: var(--background-alt);
+}
+
+.star {
+    fill: var(--foreground-alt);
+}
+
+.starred {
+    fill: var(--main);
+}
+
+#main-section {
+    display: flex;
+}
+
+aside {
+    width: 25%;
+}
+
+table {
+    width: 75%;
+}
+
+thead {}
+
+tbody {}
+
+tr {}
+
+th {
+    text-align: left;
+}
+
+td {}
+
+td div {
+    display: flex;
+    align-items: center;
+}
+
+td img {
+    height: 50px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    object-position: center;
+}
+
+/*
 #components-banner {
     display: flex;
     justify-content: center;
@@ -7,7 +62,7 @@
     padding: 25px;
     font-size: 2em;
     font-weight: bold;
-    background-color: var(--main);
+    background-color: var(--background-alt);
 }
 
 #components-main-content {
@@ -16,22 +71,36 @@
 }
 
 #components-sidebar {
-    width: 30%;
+    width: 20%;
+    height: 100%;
 }
 
 #components-products {
-    width: 70%;
+    width: 80%;
+    background-color: var(--background);
+}
+
+#products-info {
+    display: flex;
+    justify-content: space-between;
 }
 
 .product {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 50px;
     width: 100%;
     height: 50px;
 }
 
-.product img {
+.item-name {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.item-name img {
     height: 60%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
@@ -42,6 +111,7 @@
     border-radius: 5px;
 }
 
-.product button {
+.item-price button {
     height: 50%;
 }
+*/

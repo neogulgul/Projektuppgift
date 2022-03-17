@@ -5,6 +5,7 @@ const products = [
         image: "amd-ryzen-5-5600x.png",
         brand: "AMD",
         component: "cpu",
+        rating: 5,
         price: 230
     },
     {
@@ -12,6 +13,7 @@ const products = [
         image: "amd-ryzen-7-5800x.png",
         brand: "AMD",
         component: "cpu",
+        rating: 4,
         price: 345
     },
     {
@@ -19,6 +21,7 @@ const products = [
         image: "amd-ryzen-9-5900x.png",
         brand: "AMD",
         component: "cpu",
+        rating: 5,
         price: 440
     },
     {
@@ -26,6 +29,7 @@ const products = [
         image: "intel-core-i5-12600k.png",
         brand: "Intel",
         component: "cpu",
+        rating: 5,
         price: 280
     },
     {
@@ -33,6 +37,7 @@ const products = [
         image: "intel-core-i7-12700k.png",
         brand: "Intel",
         component: "cpu",
+        rating: 5,
         price: 385
     },
     {
@@ -40,6 +45,7 @@ const products = [
         image: "intel-core-i9-12900k.png",
         brand: "Intel",
         component: "cpu",
+        rating: 4,
         price: 610
     },
     // CPU Coolers
@@ -48,6 +54,7 @@ const products = [
         image: "noctua-nh-d15.png",
         brand: "Noctua",
         component: "cpu-cooler",
+        rating: 5,
         price: 100
     },
     {
@@ -55,6 +62,7 @@ const products = [
         image: "noctua-nh-d15-chromax.black.png",
         brand: "Noctua",
         component: "cpu-cooler",
+        rating: 5,
         price: 110
     },
     {
@@ -62,6 +70,7 @@ const products = [
         image: "corsair-icue-h100i-elite-capellix.png",
         brand: "Corsair",
         component: "cpu-cooler",
+        rating: 4,
         price: 110
     },
     {
@@ -69,6 +78,7 @@ const products = [
         image: "corsair-icue-h150i-elite-capellix.png",
         brand: "Corsair",
         component: "cpu-cooler",
+        rating: 4,
         price: 160
     },
     {
@@ -76,6 +86,7 @@ const products = [
         image: "nzxt-kraken-z73.png",
         brand: "NZXT",
         component: "cpu-cooler",
+        rating: 5,
         price: 255
     },
     // Motherboards
@@ -84,6 +95,7 @@ const products = [
         image: "../images/products/",
         brand: "",
         component: "motherboard",
+        rating: 5,
         price: 0
     },
     // Memory
@@ -92,6 +104,7 @@ const products = [
         image: "../images/products/",
         brand: "",
         component: "memory",
+        rating: 5,
         price: 0
     },
     // Storage
@@ -100,6 +113,7 @@ const products = [
         image: "../images/products/",
         brand: "",
         component: "storage",
+        rating: 5,
         price: 0
     },
     // Graphics cards
@@ -108,6 +122,7 @@ const products = [
         image: "../images/products/",
         brand: "",
         component: "graphics-card",
+        rating: 5,
         price: 0
     },
     // Power Supplies
@@ -116,6 +131,7 @@ const products = [
         image: "../images/products/",
         brand: "",
         component: "power-supply",
+        rating: 5,
         price: 0
     },
     // Cases
@@ -124,29 +140,74 @@ const products = [
         image: "../images/products/",
         brand: "",
         component: "case",
+        rating: 5,
         price: 0
     },
 ]
 
 let component = window.location.pathname.split("/src/components/")[1].split(".html")[0]
 
+let bannerComponent = component.replace("cpu", "CPU").replace("-", " ")
+
+let a = "a"
+
+if (component === "memory" || component === "storage") {
+    a = ""
+}
+
 main.innerHTML = `
-<section id="components-banner">Choose a ${component}</section>
-<section id="components-main-content">
-    <aside id="components-sidebar"></aside>
-    <div id="components-products"></div>
+<section id="banner">Choose ${a} ${bannerComponent}</section>
+<section id="main-section">
+    <aside></aside>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 </section>`
 
-let productsContainer = document.querySelector("#components-products")
+let sidebar = document.querySelector("aside")
+let tableBody = document.querySelector("tbody")
+
+
 
 products.forEach((product) => {
     if (product.component === component) {
-        productsContainer.innerHTML += `<div class="product">
-        <img src="../images/products/${component}/${product.image}">
-        <p>${product.name}</p>
-        <p>$${product.price}</p>
-        <button>Add to cart</button>
-        </div>`
+        let rating = ``
+        for (i = 0; i < 5; i++) {
+            let starred = ""
+            if (i < product.rating) {
+                starred = " starred"
+            }
+            rating += `<svg class="star${starred}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928z"/></svg>`
+        }
+        productMarkup = `
+        <tr>
+            <td>
+                <div>
+                    <img src="../images/products/${component}/${product.image}">
+                    <p>${product.name}</p>
+                </div>
+            </td>
+            <td>
+                <div>
+                    ${rating}
+                </div>
+            </td>
+            <td>
+                <div>
+                    <p>$${product.price}</p>
+                    <button>Add</button>
+                </div>
+            </td>
+        </tr>`
+
+        tableBody.innerHTML += productMarkup
     }
 })
 
