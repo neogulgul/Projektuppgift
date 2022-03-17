@@ -1,30 +1,42 @@
 @import "/src/css/style.css";
 
+#main-section {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+}
+
+/* ==================================================
+    # banner styling
+================================================== */
+
 #banner {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 25px;
     font-size: 2em;
+    font-weight: bold;
     text-transform: capitalize;
     background-color: var(--background-alt);
 }
 
-.star {
-    fill: var(--foreground-alt);
-}
-
-.starred {
-    fill: var(--main);
-}
-
-#main-section {
-    display: flex;
-}
+/* ==================================================
+    # aside styling
+================================================== */
 
 aside {
     width: 25%;
 }
+
+.checkbox-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* ==================================================
+    # table styling
+================================================== */
 
 table {
     width: 75%;
@@ -37,81 +49,39 @@ tbody {}
 tr {}
 
 th {
+    height: 40px;
     text-align: left;
 }
 
-td {}
+td {
+    height: 80px;
+}
 
 td div {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
-td img {
-    height: 50px;
+td div img {
+    height: 80%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     object-position: center;
 }
 
-/*
-#components-banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-    font-size: 2em;
-    font-weight: bold;
-    background-color: var(--background-alt);
-}
-
-#components-main-content {
-    width: 100vw;
-    display: flex;
-}
-
-#components-sidebar {
-    width: 20%;
-    height: 100%;
-}
-
-#components-products {
-    width: 80%;
-    background-color: var(--background);
-}
-
-#products-info {
-    display: flex;
+.price-section {
     justify-content: space-between;
 }
 
-.product {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 50px;
-    width: 100%;
-    height: 50px;
+.price-section button {
+    padding: 5px 20px;
 }
 
-.item-name {
-    display: flex;
-    align-items: center;
-    height: 100%;
+.star {
+    fill: var(--main);
 }
 
-.item-name img {
-    height: 60%;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    object-position: center;
-    background: var(--foreground);
-    padding: 5px;
-    box-sizing: content-box;
-    border-radius: 5px;
+.empty {
+    fill: var(--foreground-alt);
 }
-
-.item-price button {
-    height: 50%;
-}
-*/

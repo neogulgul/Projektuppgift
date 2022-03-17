@@ -6,7 +6,7 @@ let heroImagesContainer = document.querySelector("#hero-slides")
 let heroImages = document.querySelector("#hero-slides").children
 
 // creating dots
-for (i = 0; i < heroImages.length; i++) {
+for (let i = 0; i < heroImages.length; i++) {
     dotsContainer.innerHTML += `<div class="dot"></div>`
 }
 dots[0].classList.add("fill")
@@ -42,7 +42,7 @@ function arrow(direction) {
     heroImagesContainer.style.transform = `translateX(${translation}vw)`
 
     // dots
-    for (i = 0; i < dots.length; i++) {
+    for (let i = 0; i < dots.length; i++) {
         if (dots[i].classList.contains("fill")) {
             dots[i].classList.remove("fill")
             if (direction === "left") {
