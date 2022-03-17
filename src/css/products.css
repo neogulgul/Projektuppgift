@@ -10,6 +10,38 @@
     background-color: var(--main);
 }
 
-#components-sidebar {}
+#components-main-content {
+    width: 100vw;
+    display: flex;
+}
 
-#components-products {}
+#components-sidebar {
+    width: 30%;
+}
+
+#components-products {
+    width: 70%;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    height: 50px;
+}
+
+.product img {
+    height: 60%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    object-position: center;
+    background: var(--foreground);
+    padding: 5px;
+    box-sizing: content-box;
+    border-radius: 5px;
+}
+
+.product button {
+    height: 50%;
+}
