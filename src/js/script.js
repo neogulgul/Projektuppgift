@@ -98,7 +98,9 @@ main.insertAdjacentHTML("afterend", footer)
 let input = document.querySelector("#search-field input")
 let cross = document.querySelector("#search-field svg:last-of-type")
 
-cross.onclick = (event) => {
+cross.onmousedown = (event) => {
+    event.stopPropagation()
+    event.preventDefault()
     input.value = ""
     input.focus()
 }
@@ -108,6 +110,10 @@ input.onkeydown = (event) => {
         console.log(input.value)
         window.location.assign(`${path}search.html?search=${input.value}`)
     }
+}
+
+input.onmousedown = () => {
+    cross.style.display = "inline"
 }
 
 // cart notice
@@ -120,16 +126,20 @@ if (cartNotice.innerText !== "") {
 let browseProductsLink = document.querySelector("li.browse-products")
 let browseProductsSection = document.querySelector("section.browse-products")
 
-browseProductsLink.onclick = () => {
+browseProductsLink.onmousedown = () => {
     browseProductsLink.classList.toggle("active")
     browseProductsSection.classList.toggle("active")
 }
 
-browseProductsSection.onclick = (event) => {
+browseProductsSection.onmousedown = (event) => {
     event.stopPropagation()
 }
 
-document.body.onclick = (event) => {
+document.body.onmousedown = (event) => {
+    if (event.target !== input) {
+        cross.style.display = "none"
+    }
+
     if (browseProductsSection.classList.contains("active") && event.target !== browseProductsLink) {
         browseProductsLink.classList.remove("active")
         browseProductsSection.classList.remove("active")

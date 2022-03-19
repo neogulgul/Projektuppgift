@@ -2,8 +2,8 @@
 
 #main-section {
     display: flex;
-    gap: 20px;
-    margin: 20px;
+    gap: 50px;
+    margin: 50px;
 }
 
 /* ==================================================
@@ -29,9 +29,101 @@ aside {
     width: 25%;
 }
 
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px 0;
+    border-top: 1px solid var(--foreground-alt);
+}
+
+#part-list {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+#price-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3px;
+    margin-top: 40px;
+    border-radius: 3px;
+    background-color: var(--foreground-alt);
+}
+
+#price-slider p {
+    position: absolute;
+    top: -40px;
+}
+
+#price-slider p:first-of-type {
+    left: 0;
+}
+
+#price-slider p:last-of-type {
+    right: 0;
+}
+
+input[type="range"] {
+    position: absolute;
+    width: 100%;
+    background: none;
+    pointer-events: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    border: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--main);
+}
+
+#progress-slider {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--main);
+}
+
 .checkbox-container {
     display: flex;
     gap: 10px;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+}
+
+.rating-stars svg {
+    width: 15px;
+    height: 15px;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--foreground-alt);
+    border-radius: 5px;
+    background-color: var(--foreground);
+}
+
+input[type="checkbox"]:hover {
+    opacity: 0.8;
+}
+
+input[type="checkbox"]:checked {
+    border-color: var(--main);
+    background: url(../images/svg/check.svg);
+    background-color: var(--main-alt);
+    background-size: contain;
+    background-position: center;
 }
 
 /* ==================================================

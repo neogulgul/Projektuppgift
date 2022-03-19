@@ -162,16 +162,24 @@ main.innerHTML = `
 <section id="banner">Choose ${a} ${bannerComponent}</section>
 <section id="main-section">
     <aside>
-        <div id="part-list"></div>
-        <div id="filters">
-            <div id="price-filter">
-                <h3>Price</h3>
-                <input type="range">
+        <div id="part-list">
+            <div>
+                <h3>Parts</h3>
+                <p>0</p>
             </div>
-            <div id="manufacturer-filter">
+            <div>
+                <h3>Total</h3>
+                <p>$0</p>
+            </div>
+        </div>
+        <div id="filters">
+            <div id="price" class="filter">
+                <h3>Price</h3>
+            </div>
+            <div id="manufacturer" class="filter">
                 <h3>Manufacturer</h3>
             </div>
-            <div id="rating-filter">
+            <div id="rating" class="filter">
                 <h3>Rating</h3>
             </div>
         </div>
@@ -190,7 +198,7 @@ main.innerHTML = `
 
 // todo: make functions out of some of these for loops to make shit more readable
 
-let ratingFilter = document.querySelector("#rating-filter")
+let ratingFilter = document.querySelector("#rating")
 
 for (let i = 0; i < 5; i++) {
     let stars = 5 - i
@@ -207,19 +215,25 @@ for (let i = 0; i < 5; i++) {
     ratingFilter.innerHTML += `
     <div class="checkbox-container">
         <input type="checkbox">
-        <div>${allStars}</div>
+        <div class="rating-stars">${allStars}</div>
     </div>`
 }
 
 let sidebar = document.querySelector("aside")
 let tableBody = document.querySelector("tbody")
 
-let manufacturerFilter = document.querySelector("#manufacturer-filter")
+let manufacturerFilter = document.querySelector("#manufacturer")
 
 let componentManufacturers = []
 
+let highestPrice = 0
+
 products.forEach((product) => {
     if (product.component === component) {
+        if (product.price > highestPrice) {
+            highestPrice = product.price
+        }
+
         if (componentManufacturers.includes(product.manufacturer) !== true) {
             componentManufacturers.push(product.manufacturer)
             manufacturerFilter.innerHTML += `
@@ -237,6 +251,7 @@ products.forEach((product) => {
                 rating += starEmpty
             }
         }
+
         productMarkup = `
         <tr>
             <td>
@@ -267,3 +282,90 @@ tableBody.onclick = (event) => { // todo: add to item to cart when click on butt
         console.log("button clicked")
     }
 }
+
+const rangeMin = 0
+const rangeMax = Math.ceil(highestPrice / 100) * 100 // rounding up to nearest hundred
+let minValue = rangeMin
+let maxValue = rangeMax
+
+const rangeStep = rangeMax / 10
+console.log(rangeStep)
+
+function createPriceSlider() {
+    document.querySelector("#price").innerHTML += `
+    <div id="price-slider">
+        <div id="progress-slider"></div>
+        <p>$${rangeMin}</p>
+        <input type="range" id="range-min" min="${rangeMin}" max="${rangeMax}" value="${rangeMin}" step="${rangeStep}">
+        <p>$${rangeMax}</p>
+        <input type="range" id="range-max" min="${rangeMin}" max="${rangeMax}" value="${rangeMax}" step="${rangeStep}">
+    </div>`
+}
+
+createPriceSlider()
+
+const rangeInputs = document.querySelectorAll("#price-slider input")
+const moneyMin = document.querySelector("#price-slider p:first-of-type")
+const moneyMax = document.querySelector("#price-slider p:last-of-type")
+const progressSlider = document.querySelector("#progress-slider")
+
+const stepPercentage = (rangeStep / rangeMax) * 100
+
+let progressWidth = 100 // starts at 100%
+let progressLeft = 0    // starts at 0%
+let progressRight = 0   // starts at 0%
+
+let lastMinValue = minValue
+let lastMaxValue = maxValue
+
+rangeInputs.forEach(input => {
+    input.oninput = () => {
+        let inputValue = parseInt(input.value)
+
+        if (input.id === "range-min") {
+            if (inputValue >= maxValue) {
+                input.value = maxValue - rangeStep
+            } else {
+                minValue = inputValue
+                moneyMin.innerText = "$" + minValue
+
+                if (minValue > lastMinValue) {
+                    progressWidth -= stepPercentage
+                    progressLeft += stepPercentage
+                    progressSlider.style.width = progressWidth + "%"
+                    progressSlider.style.left = progressLeft + "%"
+                } else {
+                    progressWidth += stepPercentage
+                    progressLeft -= stepPercentage
+                    progressSlider.style.width = progressWidth + "%"
+                    progressSlider.style.left = progressLeft + "%"
+                }
+
+                lastMinValue = minValue
+            }
+        }
+
+        if (input.id === "range-max") {
+            if (inputValue <= minValue) {
+                input.value = minValue + rangeStep
+            } else {
+                maxValue = inputValue
+                moneyMax.innerText = "$" + maxValue
+
+                if (maxValue < lastMaxValue) {
+                    progressWidth -= stepPercentage
+                    progressRight += stepPercentage
+                    progressSlider.style.width = progressWidth + "%"
+                    progressSlider.style.right = progressRight + "%"
+                } else {
+                    progressWidth += stepPercentage
+                    progressRight -= stepPercentage
+                    progressSlider.style.width = progressWidth + "%"
+                    progressSlider.style.right = progressRight + "%"
+                }
+
+                lastMaxValue = maxValue
+            }
+        }
+    }
+})
