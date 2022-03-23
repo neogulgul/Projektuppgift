@@ -253,7 +253,7 @@ products.forEach((product) => {
         }
 
         productMarkup = `
-        <tr>
+        <tr id="${product.name}">
             <td>
                 <div>
                     <img src="../images/products/${component}/${product.image}">
@@ -277,9 +277,17 @@ products.forEach((product) => {
     }
 })
 
-tableBody.onclick = (event) => { // todo: add to item to cart when click on button
+tableBody.onclick = (event) => {
     if (event.target.tagName.toLowerCase() === "button") {
-        console.log("button clicked")
+        let chosenProduct = event.target.parentElement.parentElement.parentElement.id
+        if (localStorage.getItem(chosenProduct) === null) {
+            localStorage.setItem(chosenProduct, 1)
+        } else {
+            let chosenProductQuantity = parseInt(localStorage.getItem(chosenProduct))
+            localStorage.setItem(chosenProduct, chosenProductQuantity + 1)
+        }
+
+        updateCart()
     }
 }
 
@@ -289,7 +297,6 @@ let minValue = rangeMin
 let maxValue = rangeMax
 
 const rangeStep = rangeMax / 10
-console.log(rangeStep)
 
 function createPriceSlider() {
     document.querySelector("#price").innerHTML += `

@@ -74,7 +74,17 @@ input[type="range"] {
     pointer-events: none;
 }
 
-input[type="range"]::-moz-range-thumb {
+input[type="range"]::-webkit-slider-thumb { /* chrome */
+    appearance: none;
+    pointer-events: auto;
+    border: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--main);
+}
+
+input[type="range"]::-moz-range-thumb { /* firefox */
     pointer-events: auto;
     border: none;
     height: 15px;
@@ -156,7 +166,7 @@ td div {
 }
 
 td div img {
-    height: 80%;
+    height: 60px;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     object-position: center;

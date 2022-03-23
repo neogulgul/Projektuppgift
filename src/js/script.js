@@ -89,7 +89,7 @@ const footer = `
     <p>&copy; 2022 PCSpace</p>
 </footer>`
 
-let main = document.querySelector("main")
+const main = document.querySelector("main")
 
 main.insertAdjacentHTML("beforebegin", header)
 main.insertAdjacentHTML("afterend", footer)
@@ -107,7 +107,6 @@ cross.onmousedown = (event) => {
 
 input.onkeydown = (event) => {
     if (event.key === "Enter") {
-        console.log(input.value)
         window.location.assign(`${path}search.html?search=${input.value}`)
     }
 }
@@ -144,4 +143,10 @@ document.body.onmousedown = (event) => {
         browseProductsLink.classList.remove("active")
         browseProductsSection.classList.remove("active")
     }
+}
+
+// update cart
+
+function updateCart() {
+    console.log(localStorage.key(0)) // index
 }

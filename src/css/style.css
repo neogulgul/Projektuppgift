@@ -24,6 +24,14 @@
     color: var(--foreground);
 }
 
+html { /* firefox */
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar { /* chrome */
+    display: none;
+}
+
 body {
     overflow-x: hidden;
     background-color: var(--background);
