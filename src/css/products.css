@@ -142,13 +142,16 @@ input[type="checkbox"]:checked {
 
 table {
     width: 75%;
+    border-collapse: collapse;
 }
 
 thead {}
 
 tbody {}
 
-tr {}
+tr {
+    border-bottom: 1px solid var(--foreground-alt);
+}
 
 th {
     height: 40px;
@@ -156,6 +159,7 @@ th {
 }
 
 td {
+    width: calc(100% / 3);
     height: 80px;
 }
 

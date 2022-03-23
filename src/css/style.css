@@ -122,8 +122,8 @@ header section:first-of-type {
 }
 
 #icons svg {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     padding: 10px;
     border-radius: 5px;
     box-sizing: content-box;
@@ -139,24 +139,24 @@ header section:first-of-type {
     position: relative;
 }
 
-#cart div {
+#cart-notice {
     position: absolute;
     top: 5px;
     right: 5px;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border: 1px solid var(--background);
-    border-radius: 10px;
-    font-size: 50%;
+    border-radius: 50%;
+    font-size: 60%;
     transition: 0.3s;
     background-color: var(--foreground);
     color: var(--background);
 }
 
-#cart:hover div {
+#cart:hover #cart-notice {
     border-color: var(--background-alt);
     background-color: var(--main);
     color: var(--background-alt);

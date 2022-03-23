@@ -23,7 +23,7 @@ const header = `
             </a>
             <a href="${path}cart.html" id="cart">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 6.414L.757 3.172l1.415-1.415L5.414 5h15.242a1 1 0 0 1 .958 1.287l-2.4 8a1 1 0 0 1-.958.713H6v2h11v2H5a1 1 0 0 1-1-1V6.414zM5.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm12 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
-                <div></div>
+                <div id="cart-notice"></div>
             </a>
         </div>
         <nav>
@@ -115,12 +115,6 @@ input.onmousedown = () => {
     cross.style.display = "inline"
 }
 
-// cart notice
-let cartNotice = document.querySelector("#cart div")
-if (cartNotice.innerText !== "") {
-    cartNotice.style.display = "flex"
-}
-
 // browse products drop-down
 let browseProductsLink = document.querySelector("li.browse-products")
 let browseProductsSection = document.querySelector("section.browse-products")
@@ -147,6 +141,22 @@ document.body.onmousedown = (event) => {
 
 // update cart
 
+const cartNotice = document.querySelector("#cart-notice")
+
 function updateCart() {
-    console.log(localStorage.key(0)) // index
+    let cartQuantity = 0
+    Object.keys(localStorage).forEach((product) => {
+        cartQuantity += parseInt(localStorage.getItem(product))
+    })
+
+    if (cartQuantity !== 0) {
+        cartNotice.innerText = cartQuantity
+        cartNotice.style.display = "flex"
+    }
 }
+
+if (cartNotice.innerText === "") {
+    cartNotice.style.display = "none"
+}
+
+updateCart()

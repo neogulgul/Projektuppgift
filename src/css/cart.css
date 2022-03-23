@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    width: calc(100% / 3);
+}
+
+tfoot td:last-of-type{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
