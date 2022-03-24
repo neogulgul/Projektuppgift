@@ -1,14 +1,45 @@
 const tableBody = document.querySelector("tbody")
+const subTotalMarkup = document.querySelector("#checkout span")
 
-Object.keys(localStorage).forEach((product) => {
-    
+let subTotal = 0
+
+Object.keys(localStorage).forEach((item) => {
+
+    function poop(poop2) {
+        for (i = 0; i < products.length; i++) {
+            if (products[i].name === poop2) {
+                return products[i]
+            }
+        }
+    }
+
+    let product = poop(item)
+
+    let quantity = parseInt(localStorage.getItem(item))
+    let price = product.price * quantity
+
+    subTotal += price
 
     let tableRow = `
     <tr>
-        <td>${product}</td>
-        <td>${localStorage.getItem(product)}</td>
-        <td>0$</td>
+        <td>
+            <div>
+                <img src="images/products/${product.component}/${product.image}">
+                <div class="name-and-price">
+                    <p>${product.name}</p>
+                    <p>$${product.price}</p>
+                </div>
+            </div>
+        </td>
+        <td>x ${quantity}</td>
+        <td>$${price}</td>
     </tr>`
 
     tableBody.innerHTML += tableRow
 })
+
+calcSubTotal()
+
+function calcSubTotal() {
+    subTotalMarkup.innerText = "$" + subTotal
+}

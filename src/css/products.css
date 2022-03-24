@@ -180,10 +180,6 @@ td div img {
     justify-content: space-between;
 }
 
-.price-section button {
-    padding: 5px 20px;
-}
-
 .star {
     fill: var(--main);
 }

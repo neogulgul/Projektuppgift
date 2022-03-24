@@ -1,6 +1,6 @@
 let path = ""
 
-if (window.location.pathname.includes("components")) {
+if (window.location.pathname.includes("products")) {
     path = "../"
 }
 
@@ -49,35 +49,35 @@ const header = `
         </nav>
     </section>
     <section class="browse-products">
-        <a href="${path}components/cpu.html">
+        <a href="${path}products/cpu.html">
             <img src="${path}images/components/cpu.png">
             CPU
         </a>
-        <a href="${path}components/cpu-cooler.html">
+        <a href="${path}products/cpu-cooler.html">
             <img src="${path}images/components/cpu-cooler.png">
             CPU Cooler
         </a>
-        <a href="${path}components/motherboard.html">
+        <a href="${path}products/motherboard.html">
             <img src="${path}images/components/motherboard.png">
             Motherboard
         </a>
-        <a href="${path}components/memory.html">
+        <a href="${path}products/memory.html">
             <img src="${path}images/components/memory.png">
             Memory
         </a>
-        <a href="${path}components/storage.html">
+        <a href="${path}products/storage.html">
             <img src="${path}images/components/storage.png">
             Storage
         </a>
-        <a href="${path}components/graphics-card.html">
+        <a href="${path}products/graphics-card.html">
             <img src="${path}images/components/graphics-card.png">
             Graphics Card
         </a>
-        <a href="${path}components/power-supply.html">
+        <a href="${path}products/power-supply.html">
             <img src="${path}images/components/power-supply.png">
             Power Supply
         </a>
-        <a href="${path}components/case.html">
+        <a href="${path}products/case.html">
             <img src="${path}images/components/case.png">
             Case
         </a>

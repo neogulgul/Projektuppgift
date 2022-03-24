@@ -44,6 +44,7 @@ svg {
 }
 
 button {
+    padding: 5px 25px;
     border: 1px solid var(--foreground);
     border-radius: 5px;
     cursor: pointer;
@@ -148,7 +149,7 @@ header section:first-of-type {
     align-items: center;
     width: 20px;
     height: 20px;
-    border: 1px solid var(--background);
+    border: 2px solid var(--background);
     border-radius: 50%;
     font-size: 60%;
     transition: 0.3s;
