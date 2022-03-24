@@ -5,15 +5,11 @@ let subTotal = 0
 
 Object.keys(localStorage).forEach((item) => {
 
-    function poop(poop2) {
-        for (i = 0; i < products.length; i++) {
-            if (products[i].name === poop2) {
-                return products[i]
-            }
+    for (i = 0; i < products.length; i++) {
+        if (products[i].name === item) {
+            product = products[i]
         }
     }
-
-    let product = poop(item)
 
     let quantity = parseInt(localStorage.getItem(item))
     let price = product.price * quantity
