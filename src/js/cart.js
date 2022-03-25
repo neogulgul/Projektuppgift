@@ -19,27 +19,28 @@ Object.keys(localStorage).forEach((item) => {
                 <div class="name-and-price">
                     <p>${product.name}</p>
                     <p>$${product.price}</p>
+                    <button class="remove">Remove</button>
                 </div>
             </div>
         </td>
         <td>
             <div class="quantity">
-                <p>x ${quantity}</p>
                 <div class="arrows">
-                    <svg class="up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 8l6 6H6z"/></svg>
-                    <svg class="down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 16l-6-6h12z"/></svg>
+                    <svg class="up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12"><path d="M 0,12 L 24,12 L12,0 L 0,12"/></svg>
+                    <svg class="down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12"><path d="M 0,0 L 24,0 L12,12 L 0,0"/></svg>
                 </div>
+                <p>${quantity}</p>
             </div>
         </td>
-        <td>$${price}</td>
+        <td class="price-total">$${price}</td>
     </tr>`
 
     tableBody.innerHTML += tableRow
 })
 
-calcSubTotal()
+updateSubTotal()
 
-function calcSubTotal() {
+function updateSubTotal() {
     subTotalMarkup.innerText = "$" + subTotal
 }
 
@@ -47,26 +48,57 @@ let arrows = document.querySelectorAll(".arrows svg")
 
 arrows.forEach((arrow) => {
     arrow.onmousedown = (event) => {
-        let itemRow = event.target.parentElement.parentElement.parentElement.parentElement
-        let item = itemRow.id
-        let quantity = parseInt(localStorage.getItem(item))
+        let targetElement = event.target
+        if (event.target.tagName === "path") {
+            targetElement = event.target.parentElement
+        }
 
-        if (event.target.classList.contains("up")) {
+        let itemRow = targetElement.parentElement.parentElement.parentElement.parentElement
+        let itemId = itemRow.id
+        let item = products[parseInt(itemId)]
+        let quantity = parseInt(localStorage.getItem(itemId))
+        let priceTotal = itemRow.children[2]
+
+        if (targetElement.classList.contains("up")) {
             quantity += 1
-        } else if (event.target.classList.contains("down")) {
+            priceTotal.innerText = "$" + item.price * quantity
+            subTotal += item.price
+        } else if (targetElement.classList.contains("down")) {
             quantity -= 1
+            priceTotal.innerText = "$" + item.price * quantity
+            subTotal -= item.price
 
             if (quantity === 0) {
-                localStorage.removeItem(item)
+                localStorage.removeItem(itemId)
                 itemRow.remove()
             }
         }
 
         if (quantity > 0) {
-            localStorage.setItem(item, quantity)
-            event.target.parentElement.parentElement.children[0].innerText = `x ${localStorage.getItem(item)}`
+            localStorage.setItem(itemId, quantity)
+            targetElement.parentElement.parentElement.children[1].innerText = `${localStorage.getItem(itemId)}`
         }
 
+        updateSubTotal()
+        updateCart()
+    }
+})
+
+let removeButtons = document.querySelectorAll(".remove")
+
+removeButtons.forEach((button) => {
+    button.onclick = (event) => {
+        let itemRow = event.target.parentElement.parentElement.parentElement.parentElement
+        let itemId = itemRow.id
+        let item = products[parseInt(itemId)]
+        let quantity = parseInt(localStorage.getItem(itemId))
+
+        localStorage.removeItem(itemId)
+        itemRow.remove()
+
+        subTotal -= item.price * quantity
+
+        updateSubTotal()
         updateCart()
     }
 })
