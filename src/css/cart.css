@@ -5,6 +5,7 @@ main {
 
 table {
     width: 80%;
+    max-width: 1250px;
     margin-top: 50px;
     padding: 25px;
     border: 1px dashed var(--foreground-alt);
@@ -59,4 +60,30 @@ img { /* todo: normalise some css, for example product images */
 .name-and-price {
     margin-left: 10px;
     flex-direction: column;
+}
+
+.quantity {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+td:first-of-type {
+    width: 50%;
+}
+
+.arrows {
+    display: flex;
+    flex-direction: column;
+}
+
+.arrows svg:hover {
+    cursor: pointer;
+    fill: var(--foreground-alt);
+}
+
+.arrows svg:last-of-type {
+    margin-top: -50%;
 }

@@ -149,9 +149,11 @@ function updateCart() {
         cartQuantity += parseInt(localStorage.getItem(product))
     })
 
-    if (cartQuantity !== 0) {
+    if (cartQuantity > 0) {
         cartNotice.innerText = cartQuantity
         cartNotice.style.display = "flex"
+    } else {
+        cartNotice.style.display = "none"
     }
 }
 

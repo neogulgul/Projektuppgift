@@ -106,7 +106,7 @@ products.forEach((product) => {
         }
 
         productMarkup = `
-        <tr id="${product.name}">
+        <tr id="${product.id}">
             <td>
                 <div>
                     <img src="../images/products/${component}/${product.image}">
@@ -132,12 +132,12 @@ products.forEach((product) => {
 
 tableBody.onclick = (event) => {
     if (event.target.tagName.toLowerCase() === "button") {
-        let chosenProduct = event.target.parentElement.parentElement.parentElement.id
-        if (localStorage.getItem(chosenProduct) === null) {
-            localStorage.setItem(chosenProduct, 1)
+        let chosenProductId = event.target.parentElement.parentElement.parentElement.id
+        if (localStorage.getItem(chosenProductId) === null) {
+            localStorage.setItem(chosenProductId, 1)
         } else {
-            let chosenProductQuantity = parseInt(localStorage.getItem(chosenProduct))
-            localStorage.setItem(chosenProduct, chosenProductQuantity + 1)
+            let chosenProductQuantity = parseInt(localStorage.getItem(chosenProductId))
+            localStorage.setItem(chosenProductId, chosenProductQuantity + 1)
         }
 
         updateCart()

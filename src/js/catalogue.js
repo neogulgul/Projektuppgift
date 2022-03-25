@@ -144,3 +144,7 @@ const products = [
         price: 0
     },
 ]
+
+for (i = 0; i < products.length; i++) {
+    products[i].id = i
+}
