@@ -7,7 +7,7 @@ const heroImages = document.querySelector("#hero-slides").children
 
 // creating dots
 for (let i = 0; i < heroImages.length; i++) {
-    dotsContainer.innerHTML += `<div class="dot"></div>`
+    dotsContainer.innerHTML += `<div id="${i}" class="dot"></div>`
 }
 dots[0].classList.add("fill")
 
@@ -82,6 +82,32 @@ rightArrow.onclick = () => {
     arrow("right")
 }
 
+document.querySelectorAll(".dot").forEach((dot) => {
+	dot.onclick = () => {
+		let clickedId = parseInt(dot.id)
+		let currentId = undefined
+
+		for (let i = 0; i < heroImages.length; i++) {
+			if (dots[i].classList.contains("fill")) {
+				currentId = parseInt(dots[i].id)
+				break
+			}
+		}
+
+		let distance = Math.abs(clickedId - currentId)
+
+		if (clickedId > currentId) {
+			for (let i = 0; i < distance; i++) {
+				arrow("right")
+			}
+		} else if (clickedId < currentId) {
+			for (let i = 0; i < distance; i++) {
+				arrow("left")
+			}
+		}
+	}
+})
+
 let slideTime = 0
 const changeSlide = 10 // seconds
 
@@ -91,5 +117,3 @@ setInterval(() => {
         arrow("right")
     }
 }, 1000)
-
-// todo (if i have time): make it so you can click on the dots and change to that slide
