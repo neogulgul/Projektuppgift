@@ -1,11 +1,12 @@
 @import "/src/css/style.css";
 
-main section:last-of-type {
+#products {
     display: flex;
     width: 100%;
     max-width: 1920px;
     gap: 50px;
     padding: 50px;
+	padding-bottom: 0;
 }
 
 /* ==================================================
@@ -156,6 +157,7 @@ tr {
 
 th {
     height: 40px;
+	text-align: left;
 }
 
 td {

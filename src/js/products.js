@@ -14,7 +14,7 @@ function addToProductsMain() {
 
     main.innerHTML = `
     <section id="banner">Choose ${a} ${component.replace("cpu", "CPU").replace("-", " ")}</section>
-    <section>
+    <section id="products">
         <aside>
 			<div id="part-list">
 				<h3>
@@ -83,7 +83,7 @@ function createProducts() {
             <tr id="${product.id}">
                 <td>
                     <div class="name-section">
-                        <img src="../images/products/${component}/${product.image}">
+                        <img src="../images/products/${product.component}/${product.image}">
                         <p>${product.name}</p>
                     </div>
                 </td>
@@ -145,19 +145,21 @@ addToProductsMain()
 createProducts()
 createRatingFilter()
 
-document.querySelector("tbody").onclick = (event) => {
-    if (event.target.tagName.toLowerCase() === "button") {
-        let chosenProductId = event.target.parentElement.parentElement.parentElement.id
-        if (localStorage.getItem(chosenProductId) === null) {
-            localStorage.setItem(chosenProductId, 1)
-        } else {
-            let chosenProductQuantity = parseInt(localStorage.getItem(chosenProductId))
-            localStorage.setItem(chosenProductId, chosenProductQuantity + 1)
-        }
+let buttons = document.querySelectorAll("tr button")
 
-        updateCart()
-    }
-}
+buttons.forEach((button) => {
+	button.onclick = () => {
+		let chosenProductId = button.parentElement.parentElement.parentElement.id
+		if (localStorage.getItem(chosenProductId) === null) {
+			localStorage.setItem(chosenProductId, 1)
+		} else {
+			let chosenProductQuantity = parseInt(localStorage.getItem(chosenProductId))
+			localStorage.setItem(chosenProductId, chosenProductQuantity + 1)
+		}
+
+		updateCart()
+	}
+})
 
 const rangeMin = 0
 const rangeMax = Math.ceil(highestPrice / 100) * 100 // rounding up to nearest hundred

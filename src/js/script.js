@@ -107,15 +107,6 @@ function leftClick(event) {
 const input = document.querySelector("#search-field input")
 const cross = document.querySelector("#search-field svg:last-of-type")
 
-cross.onmousedown = (event) => {
-	if (leftClick(event)) {
-		event.stopPropagation()
-		event.preventDefault()
-		input.value = ""
-		input.focus()
-	}
-}
-
 input.onkeydown = (event) => {
     if (event.key === "Enter") {
         window.location.assign(`${path}search.html?search=${input.value}`)
@@ -124,6 +115,15 @@ input.onkeydown = (event) => {
 
 input.onmousedown = () => {
 	cross.style.display = "inline"
+}
+
+cross.onmousedown = (event) => {
+	if (leftClick(event)) {
+		event.stopPropagation()
+		event.preventDefault()
+		input.value = ""
+		input.focus()
+	}
 }
 
 // browse products drop-down
