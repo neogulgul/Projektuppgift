@@ -16,7 +16,7 @@ for (i = 0; i < products.length; i++) {
 	let product = products[i]
 	let productInfo = product.name + product.manufacturer + product.component
 
-	if (productInfo.toLowerCase().includes(searchValue.toLowerCase())) {
+	if (productInfo.toLowerCase().includes(searchValue.toLowerCase()) && searchValue !== "") {
 		let rating = ``
 		for (let i = 0; i < 5; i++) {
 			if (i < product.rating) {
