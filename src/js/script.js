@@ -159,6 +159,10 @@ function getCartQuantity() {
 	let cartQuantity = 0
 
     Object.keys(localStorage).forEach((product) => {
+		if (product === "loginStatus") {
+			return
+		}
+
         cartQuantity += parseInt(localStorage.getItem(product))
     })
 

@@ -2,6 +2,10 @@ let totalPrice = 0
 
 function loadItems() {
 	Object.keys(localStorage).forEach((item) => {
+		if (item === "loginStatus") {
+			return
+		}
+
 		let product = products[item]
 		let quantity = parseInt(localStorage.getItem(item))
 		let price = product.price * quantity
@@ -44,8 +48,8 @@ function updateTotal() {
 
 function cartDisplay() {
 	if (getCartQuantity() === 0) {
-		document.querySelector("main").innerHTML += "<h2>Your cart is currently empty.</h2>"
 		document.querySelector("table").style.display = "none"
+		document.querySelector("main").innerHTML += "<h2>Your cart is currently empty.</h2>"
 	}
 }
 
