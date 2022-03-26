@@ -94,15 +94,26 @@ const main = document.querySelector("main")
 main.insertAdjacentHTML("beforebegin", header)
 main.insertAdjacentHTML("afterend", footer)
 
+// check if left click
+function leftClick(event) {
+	if (event.button === 0) {
+		return true
+	}
+
+	return false
+}
+
 // input
-let input = document.querySelector("#search-field input")
-let cross = document.querySelector("#search-field svg:last-of-type")
+const input = document.querySelector("#search-field input")
+const cross = document.querySelector("#search-field svg:last-of-type")
 
 cross.onmousedown = (event) => {
-    event.stopPropagation()
-    event.preventDefault()
-    input.value = ""
-    input.focus()
+	if (leftClick(event)) {
+		event.stopPropagation()
+		event.preventDefault()
+		input.value = ""
+		input.focus()
+	}
 }
 
 input.onkeydown = (event) => {
@@ -112,16 +123,18 @@ input.onkeydown = (event) => {
 }
 
 input.onmousedown = () => {
-    cross.style.display = "inline"
+	cross.style.display = "inline"
 }
 
 // browse products drop-down
-let browseProductsLink = document.querySelector("li.browse-products")
-let browseProductsSection = document.querySelector("section.browse-products")
+const browseProductsLink = document.querySelector("li.browse-products")
+const browseProductsSection = document.querySelector("section.browse-products")
 
-browseProductsLink.onmousedown = () => {
-    browseProductsLink.classList.toggle("active")
-    browseProductsSection.classList.toggle("active")
+browseProductsLink.onmousedown = (event) => {
+	if (leftClick(event)) {
+		browseProductsLink.classList.toggle("active")
+    	browseProductsSection.classList.toggle("active")
+	}
 }
 
 browseProductsSection.onmousedown = (event) => {
@@ -140,25 +153,25 @@ document.body.onmousedown = (event) => {
 }
 
 // update cart
-
 const cartNotice = document.querySelector("#cart-notice")
 
-function updateCart() {
-    let cartQuantity = 0
+function getCartQuantity() {
+	let cartQuantity = 0
+
     Object.keys(localStorage).forEach((product) => {
         cartQuantity += parseInt(localStorage.getItem(product))
     })
 
-    if (cartQuantity > 0) {
-        cartNotice.innerText = cartQuantity
+	return cartQuantity
+}
+
+function updateCart() {
+    if (getCartQuantity() > 0) {
+        cartNotice.innerText = getCartQuantity()
         cartNotice.style.display = "flex"
     } else {
         cartNotice.style.display = "none"
     }
-}
-
-if (cartNotice.innerText === "") {
-    cartNotice.style.display = "none"
 }
 
 updateCart()

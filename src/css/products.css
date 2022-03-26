@@ -1,24 +1,11 @@
 @import "/src/css/style.css";
 
-#main-section {
+main section:last-of-type {
     display: flex;
+    width: 100%;
+    max-width: 1920px;
     gap: 50px;
-    margin: 50px;
-}
-
-/* ==================================================
-    # banner styling
-================================================== */
-
-#banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-    font-size: 2em;
-    font-weight: bold;
-    text-transform: capitalize;
-    background-color: var(--background-alt);
+    padding: 50px;
 }
 
 /* ==================================================
@@ -29,6 +16,22 @@ aside {
     width: 25%;
 }
 
+/* part list */
+
+#part-list {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+#part-list h3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* filters */
+
 .filter {
     display: flex;
     flex-direction: column;
@@ -37,11 +40,7 @@ aside {
     border-top: 1px solid var(--foreground-alt);
 }
 
-#part-list {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
+/* price slider */
 
 #price-slider {
     position: relative;
@@ -70,8 +69,8 @@ aside {
 input[type="range"] {
     position: absolute;
     width: 100%;
-    background: none;
     pointer-events: none;
+    background: none;
 }
 
 input[type="range"]::-webkit-slider-thumb { /* chrome */
@@ -85,6 +84,7 @@ input[type="range"]::-webkit-slider-thumb { /* chrome */
 }
 
 input[type="range"]::-moz-range-thumb { /* firefox */
+    appearance: none;
     pointer-events: auto;
     border: none;
     height: 15px;
@@ -101,22 +101,15 @@ input[type="range"]::-moz-range-thumb { /* firefox */
     background-color: var(--main);
 }
 
+/* checkboxes */
+
 .checkbox-container {
     display: flex;
     gap: 10px;
 }
 
-.rating-stars {
-    display: flex;
-    align-items: center;
-}
-
-.rating-stars svg {
-    width: 15px;
-    height: 15px;
-}
-
 input[type="checkbox"] {
+    appearance: none;
     width: 25px;
     height: 25px;
     border: 2px solid var(--foreground-alt);
@@ -136,6 +129,18 @@ input[type="checkbox"]:checked {
     background-position: center;
 }
 
+/* rating */
+
+.star-rating {
+    display: flex;
+    align-items: center;
+}
+
+.star-rating svg {
+    width: 15px;
+    height: 15px;
+}
+
 /* ==================================================
     # table styling
 ================================================== */
@@ -145,40 +150,38 @@ table {
     border-collapse: collapse;
 }
 
-thead {}
-
-tbody {}
-
 tr {
     border-bottom: 1px solid var(--foreground-alt);
 }
 
 th {
     height: 40px;
-    text-align: left;
 }
 
 td {
     width: calc(100% / 3);
-    height: 80px;
+    height: 150px;
 }
 
 td div {
     display: flex;
     align-items: center;
-    height: 100%;
 }
 
-td div img {
+/* name */
+
+.name-section img {
     height: 60px;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     object-position: center;
 }
 
-.price-section {
-    justify-content: space-between;
+.name-section p {
+    padding: 0 20px;
 }
+
+/* rating */
 
 .star {
     fill: var(--main);
@@ -186,4 +189,9 @@ td div img {
 
 .empty {
     fill: var(--foreground-alt);
+}
+
+/* price */
+.price-section {
+    justify-content: space-between;
 }

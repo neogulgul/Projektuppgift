@@ -1,9 +1,9 @@
-let leftArrow = document.querySelector(".arrow:first-of-type")
-let rightArrow = document.querySelector(".arrow:last-of-type")
-let dotsContainer = document.querySelector("#dots")
-let dots = document.querySelector("#dots").children
-let heroImagesContainer = document.querySelector("#hero-slides")
-let heroImages = document.querySelector("#hero-slides").children
+const leftArrow = document.querySelector(".arrow:first-of-type")
+const rightArrow = document.querySelector(".arrow:last-of-type")
+const dotsContainer = document.querySelector("#dots")
+const dots = document.querySelector("#dots").children
+const heroImagesContainer = document.querySelector("#hero-slides")
+const heroImages = document.querySelector("#hero-slides").children
 
 // creating dots
 for (let i = 0; i < heroImages.length; i++) {
@@ -21,8 +21,8 @@ let maxTranslation = 50 * heroImages.length + 50
 let minTranslation = -maxTranslation
 
 // image clones
-lastImageClone = heroImages[heroImages.length - 1].outerHTML
-firstImageClone = heroImages[0].outerHTML
+const lastImageClone = heroImages[heroImages.length - 1].outerHTML
+const firstImageClone = heroImages[0].outerHTML
 heroImagesContainer.insertAdjacentHTML("afterbegin", lastImageClone)
 heroImagesContainer.insertAdjacentHTML("beforeend", firstImageClone)
 
@@ -85,9 +85,11 @@ rightArrow.onclick = () => {
 let slideTime = 0
 const changeSlide = 10 // seconds
 
-setInterval(function() {
+setInterval(() => {
     slideTime += 1
     if (slideTime === changeSlide) {
         arrow("right")
     }
 }, 1000)
+
+// todo (if i have time): make it so you can click on the dots and change to that slide

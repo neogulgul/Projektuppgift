@@ -1,136 +1,151 @@
-let component = window.location.pathname.split("/src/products/")[1].split(".html")[0]
-
-let bannerComponent = component.replace("cpu", "CPU").replace("-", " ")
-
-let a = "a"
-
-if (component === "memory" || component === "storage") {
-    a = ""
-}
+const component = window.location.pathname.split("/src/products/")[1].split(".html")[0]
 
 const star = `<svg class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928z"/></svg>`
 const starEmpty = `<svg class="star empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928z"/></svg>`
 
-main.innerHTML = `
-<section id="banner">Choose ${a} ${bannerComponent}</section>
-<section id="main-section">
-    <aside>
-        <div id="part-list">
-            <div>
-                <h3>Parts</h3>
-                <p>0</p>
-            </div>
-            <div>
-                <h3>Total</h3>
-                <p>$0</p>
-            </div>
-        </div>
-        <div id="filters">
-            <div id="price" class="filter">
-                <h3>Price</h3>
-            </div>
-            <div id="manufacturer" class="filter">
-                <h3>Manufacturer</h3>
-            </div>
-            <div id="rating" class="filter">
-                <h3>Rating</h3>
-            </div>
-        </div>
-    </aside>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Rating</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</section>`
+let highestPrice = 0
 
-// todo: make functions out of some of these for loops to make shit more readable
+function addToProductsMain() {
+    let a = "a"
 
-let ratingFilter = document.querySelector("#rating")
-
-for (let i = 0; i < 5; i++) {
-    let stars = 5 - i
-    let allStars = ``
-
-    for (let j = 0; j < 5; j++) {
-        if (j < stars) {
-            allStars += star
-        } else {
-            allStars += starEmpty
-        }
+    if (component === "memory" || component === "storage") {
+        a = ""
     }
 
-    ratingFilter.innerHTML += `
-    <div class="checkbox-container">
-        <input type="checkbox">
-        <div class="rating-stars">${allStars}</div>
+    main.innerHTML = `
+    <section id="banner">Choose ${a} ${component.replace("cpu", "CPU").replace("-", " ")}</section>
+    <section>
+        <aside>
+			<div id="part-list">
+				<h3>
+					Parts
+					<span>0</span>
+				</h3>
+				<h3>
+					Total
+					<span>$0</span>
+				</h3>
+			</div>
+            <div id="filters">
+                <div id="price" class="filter">
+                    <h3>Price</h3>
+                </div>
+                <div id="manufacturer" class="filter">
+                    <h3>Manufacturer</h3>
+                </div>
+                <div id="rating" class="filter">
+                    <h3>Rating</h3>
+                </div>
+            </div>
+        </aside>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>`
+}
+
+function createProducts() {
+    const componentManufacturers = []
+    const manufacturerFilter = document.querySelector("#manufacturer")
+
+    products.forEach((product) => {
+        if (product.component === component) {
+            if (product.price > highestPrice) {
+                highestPrice = product.price
+            }
+    
+            if (componentManufacturers.includes(product.manufacturer) !== true) {
+                componentManufacturers.push(product.manufacturer)
+                manufacturerFilter.innerHTML += `
+                <div class="checkbox-container">
+                    <input type="checkbox">
+                    <p>${product.manufacturer}</p>
+                </div>`
+            }
+    
+            let rating = ``
+            for (let i = 0; i < 5; i++) {
+                if (i < product.rating) {
+                    rating += star
+                } else {
+                    rating += starEmpty
+                }
+            }
+    
+            productMarkup = `
+            <tr id="${product.id}">
+                <td>
+                    <div class="name-section">
+                        <img src="../images/products/${component}/${product.image}">
+                        <p>${product.name}</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="rating-section">
+                        ${rating}
+                    </div>
+                </td>
+                <td>
+                    <div class="price-section">
+                        <p>$${product.price}</p>
+                        <button>Add</button>
+                    </div>
+                </td>
+            </tr>`
+    
+            document.querySelector("tbody").innerHTML += productMarkup
+        }
+    })
+}
+
+function createPriceSlider() {
+    document.querySelector("#price").innerHTML += `
+    <div id="price-slider">
+        <p>$${rangeMin}</p>
+        <input type="range" id="range-min" min="${rangeMin}" max="${rangeMax}" value="${rangeMin}" step="${rangeStep}">
+        <p>$${rangeMax}</p>
+        <input type="range" id="range-max" min="${rangeMin}" max="${rangeMax}" value="${rangeMax}" step="${rangeStep}">
+        <div id="progress-slider"></div>
     </div>`
 }
 
-let sidebar = document.querySelector("aside")
-let tableBody = document.querySelector("tbody")
+function createRatingFilter() {
+    let ratingFilter = document.querySelector("#rating")
 
-let manufacturerFilter = document.querySelector("#manufacturer")
-
-let componentManufacturers = []
-
-let highestPrice = 0
-
-products.forEach((product) => {
-    if (product.component === component) {
-        if (product.price > highestPrice) {
-            highestPrice = product.price
-        }
-
-        if (componentManufacturers.includes(product.manufacturer) !== true) {
-            componentManufacturers.push(product.manufacturer)
-            manufacturerFilter.innerHTML += `
-            <div class="checkbox-container">
-                <input type="checkbox">
-                <p>${product.manufacturer}</p>
-            </div>`
-        }
-
+    for (let i = 0; i < 5; i++) {
         let rating = ``
-        for (let i = 0; i < 5; i++) {
-            if (i < product.rating) {
+        let stars = 5 - i
+
+        for (let j = 0; j < 5; j++) {
+            if (j < stars) {
                 rating += star
             } else {
                 rating += starEmpty
             }
         }
 
-        productMarkup = `
-        <tr id="${product.id}">
-            <td>
-                <div>
-                    <img src="../images/products/${component}/${product.image}">
-                    <p>${product.name}</p>
-                </div>
-            </td>
-            <td>
-                <div>
-                    ${rating}
-                </div>
-            </td>
-            <td>
-                <div class="price-section">
-                    <p>$${product.price}</p>
-                    <button>Add</button>
-                </div>
-            </td>
-        </tr>`
-
-        tableBody.innerHTML += productMarkup
+        ratingFilter.innerHTML += `
+        <div class="checkbox-container">
+            <input type="checkbox">
+            <div class="star-rating">
+                ${rating}
+            </div>
+        </div>`
     }
-})
+}
 
-tableBody.onclick = (event) => {
+addToProductsMain()
+createProducts()
+createRatingFilter()
+
+document.querySelector("tbody").onclick = (event) => {
     if (event.target.tagName.toLowerCase() === "button") {
         let chosenProductId = event.target.parentElement.parentElement.parentElement.id
         if (localStorage.getItem(chosenProductId) === null) {
@@ -151,17 +166,6 @@ let maxValue = rangeMax
 
 const rangeStep = rangeMax / 10
 
-function createPriceSlider() {
-    document.querySelector("#price").innerHTML += `
-    <div id="price-slider">
-        <div id="progress-slider"></div>
-        <p>$${rangeMin}</p>
-        <input type="range" id="range-min" min="${rangeMin}" max="${rangeMax}" value="${rangeMin}" step="${rangeStep}">
-        <p>$${rangeMax}</p>
-        <input type="range" id="range-max" min="${rangeMin}" max="${rangeMax}" value="${rangeMax}" step="${rangeStep}">
-    </div>`
-}
-
 createPriceSlider()
 
 const rangeInputs = document.querySelectorAll("#price-slider input")
@@ -171,9 +175,9 @@ const progressSlider = document.querySelector("#progress-slider")
 
 const stepPercentage = (rangeStep / rangeMax) * 100
 
-let progressWidth = 100 // starts at 100%
-let progressLeft = 0    // starts at 0%
-let progressRight = 0   // starts at 0%
+let progressWidth 	= 100   // starts at 100%
+let progressLeft 	= 0    // starts at 0%
+let progressRight 	= 0   // starts at 0%
 
 let lastMinValue = minValue
 let lastMaxValue = maxValue
