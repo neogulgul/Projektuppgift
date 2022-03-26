@@ -146,10 +146,10 @@ document.body.onmousedown = (event) => {
         cross.style.display = "none"
     }
 
-    if (browseProductsSection.classList.contains("active") && event.target !== browseProductsLink) {
-        browseProductsLink.classList.remove("active")
+	if (event.target !== browseProductsLink && !browseProductsLink.contains(event.target)) {
+		browseProductsLink.classList.remove("active")
         browseProductsSection.classList.remove("active")
-    }
+	}
 }
 
 // update cart
