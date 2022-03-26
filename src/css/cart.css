@@ -1,92 +1,99 @@
-main {
-    display: flex;
-    justify-content: center;
-}
+@import "/src/css/style.css";
 
 table {
-    width: 80%;
-    max-width: 1250px;
-    margin-top: 50px;
+	width: 80%;
+    max-width: 1920px;
     padding: 25px;
-    border: 1px dashed var(--foreground-alt);
-    border-radius: 5px;
-}
-
-tbody::before, tbody::after { /* margin doesn't work :( */
-    content: "";
-    display: block;
-    height: 50px;
+	border-collapse: collapse;
 }
 
 th {
-    text-align: left;
-}
-
-td {
     width: calc(100% / 3);
 }
 
-td div {
-    display: flex;
+th:first-child {
+	text-align: left;
 }
 
-#checkout {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin-left: auto;
+th:last-child {
+	text-align: right;
 }
 
-#checkout p {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+tbody td {
+	border-top: 2px solid var(--foreground-alt);
+	border-bottom: 2px solid var(--foreground-alt);
 }
 
-#checkout button {
-    margin-top: 25px;
-    width: 100%;
-    height: 50px;
+th, .product-column, .quantity-column, .subtotal-column, #checkout {
+	padding: 25px;
 }
 
-img { /* todo: normalise some css, for example product images */
-    width: 60px;
-    aspect-ratio: 1/1;
+.product-column {
+	display: flex;
+}
+
+.product-column img {
+    width: 100px;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
 }
 
-.name-and-price {
-    margin-left: 10px;
-    flex-direction: column;
+.product-column aside {
+	display: flex;
+	flex-direction: column;
+	margin-left: 25px;
 }
 
-.quantity {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.product-column .remove {
+	margin-top: auto;
+	width: 100px;
 }
 
-tr th:last-of-type, tr td:last-of-type {
-    text-align: right;
+.quantity-column {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
 }
 
-td:first-of-type {
-    width: 50%;
+.quantity-column p {
+	width: 40px;
+	text-align: center;
 }
 
 .arrows {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .arrows svg {
-    width: 16px;
-    height: 8px;
+	width: 20px;
+	height: 10px;
+	cursor: pointer;
+	transition: 0.3s;
 }
 
 .arrows svg:hover {
-    cursor: pointer;
-    fill: var(--foreground-alt);
+	fill: var(--foreground-alt);
+}
+
+.subtotal-column {
+	display: flex;
+	justify-content: right;
+}
+
+#checkout {
+	max-width: 300px;
+	margin-left: auto;
+}
+
+#checkout p {
+	display: flex;
+	justify-content: space-between;
+}
+
+#checkout button {
+	width: 100%;
+	margin-top: 10px;
 }
