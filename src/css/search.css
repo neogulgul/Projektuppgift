@@ -1,5 +1,4 @@
-@import "/src/css/style.css";
-@import "/src/css/products.css";
+@import "products.css";
 
 #banner span {
 	font-size: inherit;
