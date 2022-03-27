@@ -12,11 +12,14 @@ let searchValue = params.search
 input.value = searchValue
 searchSpan.innerText = `"${searchValue}"`
 
+let results = false
+
 for (i = 0; i < products.length; i++) {
 	let product = products[i]
 	let productInfo = product.name + product.manufacturer + product.component
 
 	if (productInfo.toLowerCase().includes(searchValue.toLowerCase()) && searchValue !== "") {
+		results = true
 		let rating = ``
 		for (let i = 0; i < 5; i++) {
 			if (i < product.rating) {
@@ -49,6 +52,11 @@ for (i = 0; i < products.length; i++) {
 
 		document.querySelector("tbody").innerHTML += productMarkup
 	}
+}
+
+if (results === false) {
+	document.querySelector("table").style.display = "none"
+	document.querySelector("main").innerHTML += "<h2>No results.</h2>"
 }
 
 const buttons = document.querySelectorAll("tr button")
