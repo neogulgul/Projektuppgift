@@ -134,7 +134,7 @@ function createRatingFilter() {
         ratingFilter.innerHTML += `
         <div class="checkbox-container">
             <input type="checkbox">
-            <div class="star-rating">
+            <div id="${5 - i}" class="star-rating">
                 ${rating}
             </div>
         </div>`
@@ -235,3 +235,79 @@ rangeInputs.forEach(input => {
         }
     }
 })
+
+// filters
+const params = new Proxy(new URLSearchParams(window.location.search), {
+	get: (searchParams, prop) => searchParams.get(prop)
+})
+
+const manufacturerCheckboxes = document.querySelectorAll("#manufacturer input")
+const ratingCheckboxes = document.querySelectorAll("#rating input")
+
+manufacturerCheckboxes.forEach((checkbox) => {
+	checkbox.onclick = () => {
+		const checkboxValue = checkbox.parentElement.children[1].innerText
+		const checkboxStatus = checkbox.checked
+
+		if (checkboxStatus === true) { 	// checked
+			if (params.manufacturer === null) {
+				window.location.assign(window.location.pathname + `?manufacturer=${checkboxValue}`)
+			} else {
+				window.location.assign(window.location.pathname + `?manufacturer=${params.manufacturer + checkboxValue}`)
+			}
+		} else { 						// unchecked
+			newManufacturerParam = params.manufacturer.replace(checkboxValue, "")
+
+			if (newManufacturerParam === "") {
+				window.location.assign(window.location.pathname)
+			} else {
+				window.location.assign(window.location.pathname + `?manufacturer=${newManufacturerParam}`)
+			}
+		}
+	}
+})
+
+ratingCheckboxes.forEach((checkbox) => {
+	checkbox.onclick = () => {
+		const checkboxValue = checkbox.parentElement.children[1].id
+		const checkboxStatus = checkbox.checked
+
+		if (checkboxStatus === true) { 	// checked
+			if (params.rating === null) {
+				window.location.assign(window.location.pathname + `?rating=${checkboxValue}`)
+			} else {
+				window.location.assign(window.location.pathname + `?rating=${params.rating + checkboxValue}`)
+			}
+		} else { 						// unchecked
+			newRatingParam = params.rating.replace(checkboxValue, "")
+
+			if (newRatingParam === "") {
+				window.location.assign(window.location.pathname)
+			} else {
+				window.location.assign(window.location.pathname + `?rating=${newRatingParam}`)
+			}
+		}
+	}
+})
+
+if (params.manufacturer !== null) {
+	for (let i = 0; i < manufacturerCheckboxes.length; i++) {
+		let checkboxValue = manufacturerCheckboxes[i].parentElement.children[1].innerText
+	
+		if (params.manufacturer.includes(checkboxValue)) {
+			manufacturerCheckboxes[i].checked = true
+		}
+	}
+}
+
+if (params.rating !== null) {
+	for (let i = 0; i < ratingCheckboxes.length; i++) {
+		let checkboxValue = ratingCheckboxes[i].parentElement.children[1].id
+
+		if (params.rating.includes(checkboxValue)) {
+			ratingCheckboxes[i].checked = true
+		}
+	}
+}
+
+// todo: make it so different filters can be active at the same time
