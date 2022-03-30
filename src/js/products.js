@@ -175,8 +175,6 @@ const moneyMin = document.querySelector("#price-slider p:first-of-type")
 const moneyMax = document.querySelector("#price-slider p:last-of-type")
 const progressSlider = document.querySelector("#progress-slider")
 
-const stepPercentage = (rangeStep / rangeMax) * 100
-
 let progressWidth 	= 100   // starts at 100%
 let progressLeft 	= 0    // starts at 0%
 let progressRight 	= 0   // starts at 0%
@@ -189,49 +187,45 @@ rangeInputs.forEach(input => {
         let inputValue = parseInt(input.value)
 
         if (input.id === "range-min") {
+			let distance = inputValue - lastMinValue
+			let stepPercentage = distance / rangeMax * 100
+
             if (inputValue >= maxValue) {
                 input.value = maxValue - rangeStep
+				minValue = input.value
             } else {
                 minValue = inputValue
-                moneyMin.innerText = "$" + minValue
 
-                if (minValue > lastMinValue) {
-                    progressWidth -= stepPercentage
-                    progressLeft += stepPercentage
-                    progressSlider.style.width = progressWidth + "%"
-                    progressSlider.style.left = progressLeft + "%"
-                } else {
-                    progressWidth += stepPercentage
-                    progressLeft -= stepPercentage
-                    progressSlider.style.width = progressWidth + "%"
-                    progressSlider.style.left = progressLeft + "%"
-                }
+				progressWidth -= stepPercentage
+				progressLeft += stepPercentage
+				progressSlider.style.width = progressWidth + "%"
+				progressSlider.style.left = progressLeft + "%"
 
                 lastMinValue = minValue
             }
+
+			moneyMin.innerText = "$" + minValue
         }
 
         if (input.id === "range-max") {
+			let distance = inputValue - lastMaxValue
+			let stepPercentage = distance / rangeMax * 100
+
             if (inputValue <= minValue) {
                 input.value = minValue + rangeStep
+				maxValue = input.value
             } else {
                 maxValue = inputValue
-                moneyMax.innerText = "$" + maxValue
 
-                if (maxValue < lastMaxValue) {
-                    progressWidth -= stepPercentage
-                    progressRight += stepPercentage
-                    progressSlider.style.width = progressWidth + "%"
-                    progressSlider.style.right = progressRight + "%"
-                } else {
-                    progressWidth += stepPercentage
-                    progressRight -= stepPercentage
-                    progressSlider.style.width = progressWidth + "%"
-                    progressSlider.style.right = progressRight + "%"
-                }
+				progressWidth += stepPercentage
+				progressRight -= stepPercentage
+				progressSlider.style.width = progressWidth + "%"
+				progressSlider.style.right = progressRight + "%"
 
                 lastMaxValue = maxValue
             }
+
+			moneyMax.innerText = "$" + maxValue
         }
     }
 })
