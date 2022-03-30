@@ -46,3 +46,18 @@ autofill.onclick = () => {
 	passwordInput.value = password
 	passwordInput.focus()
 }
+
+const eye = document.querySelector("#eye")
+const eyeOff = document.querySelector("#eye-off")
+
+eye.onclick = () => {
+	eye.style.display = "none"
+	eyeOff.style.display = "inline"
+	passwordInput.type = "password"
+}
+
+eyeOff.onclick = () => {
+	eyeOff.style.display = "none"
+	eye.style.display = "inline"
+	passwordInput.type = "text"
+}
