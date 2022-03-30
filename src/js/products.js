@@ -248,6 +248,10 @@ rangeInputs.forEach(input => {
 			moneyMax.innerText = "$" + maxValue
         }
     }
+
+	input.onclick = () => {
+		window.location.assign(window.location.pathname + `?price=${minValue},${maxValue}`)
+	}
 })
 
 // filters
