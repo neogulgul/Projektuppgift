@@ -192,17 +192,27 @@ rangeInputs.forEach(input => {
 
             if (inputValue >= maxValue) {
                 input.value = maxValue - rangeStep
-				minValue = input.value
-            } else {
+				minValue = maxValue - rangeStep
+
+				progressWidth = 10
+				progressLeft = minValue / rangeMax * 100
+            } else if (inputValue <= rangeMin) {
+				input.value = rangeMin
+				minValue = rangeMin
+
+				progressWidth = 100 - progressRight
+				progressLeft = 0
+			} else {
                 minValue = inputValue
 
 				progressWidth -= stepPercentage
 				progressLeft += stepPercentage
-				progressSlider.style.width = progressWidth + "%"
-				progressSlider.style.left = progressLeft + "%"
 
                 lastMinValue = minValue
             }
+
+			progressSlider.style.width = progressWidth + "%"
+			progressSlider.style.left = progressLeft + "%"
 
 			moneyMin.innerText = "$" + minValue
         }
@@ -213,17 +223,27 @@ rangeInputs.forEach(input => {
 
             if (inputValue <= minValue) {
                 input.value = minValue + rangeStep
-				maxValue = input.value
-            } else {
+				maxValue = minValue + rangeStep
+
+				progressWidth = 10
+				progressRight = 100 - maxValue / rangeMax * 100
+            } else if (inputValue >= rangeMax) {
+				input.value = rangeMax
+				maxValue = rangeMax
+
+				progressWidth = 100 - progressLeft
+				progressRight = 0
+			} else {
                 maxValue = inputValue
 
 				progressWidth += stepPercentage
 				progressRight -= stepPercentage
-				progressSlider.style.width = progressWidth + "%"
-				progressSlider.style.right = progressRight + "%"
 
                 lastMaxValue = maxValue
             }
+
+			progressSlider.style.width = progressWidth + "%"
+			progressSlider.style.right = progressRight + "%"
 
 			moneyMax.innerText = "$" + maxValue
         }
