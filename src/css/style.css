@@ -301,7 +301,7 @@ section.browse-products a:hover {
 }
 
 section.browse-products a img {
-    height: 100px;
+    height: 100%;
     aspect-ratio: 1 / 1;
     object-position: center;
     object-fit: contain;

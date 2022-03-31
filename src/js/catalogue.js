@@ -92,7 +92,7 @@ const products = [
     // Motherboards
     {
         name: "",
-        image: "../images/products/",
+        image: "",
         manufacturer: "",
         component: "motherboard",
         rating: 5,
@@ -101,7 +101,7 @@ const products = [
     // Memory
     {
         name: "",
-        image: "../images/products/",
+        image: "",
         manufacturer: "",
         component: "memory",
         rating: 5,
@@ -110,7 +110,7 @@ const products = [
     // Storage
     {
         name: "",
-        image: "../images/products/",
+        image: "",
         manufacturer: "",
         component: "storage",
         rating: 5,
@@ -118,17 +118,41 @@ const products = [
     },
     // Graphics cards
     {
-        name: "",
-        image: "../images/products/",
-        manufacturer: "",
+        name: "EVGA GeForce RTX 3090",
+        image: "evga-geforce-rtx-3090.png",
+        manufacturer: "EVGA",
         component: "graphics-card",
         rating: 5,
-        price: 0
+        price: 2000
+    },
+    {
+        name: "GeForce RTX 3060 Ti Founders Edition",
+        image: "geforce-rtx-3060-ti-founders-edition.png",
+        manufacturer: "Nvidia",
+        component: "graphics-card",
+        rating: 5,
+        price: 399
+    },
+    {
+        name: "Gigabyte GeForce RTX 3070 Ti",
+        image: "gigabyte-geforce-rtx-3070-ti.png",
+        manufacturer: "Gigabyte",
+        component: "graphics-card",
+        rating: 5,
+        price: 800
+    },
+    {
+        name: "MSI GeForce RTX 3060",
+        image: "msi-geforce-rtx-3060.png",
+        manufacturer: "MSI",
+        component: "graphics-card",
+        rating: 4,
+        price: 500
     },
     // Power Supplies
     {
         name: "",
-        image: "../images/products/",
+        image: "",
         manufacturer: "",
         component: "power-supply",
         rating: 5,
@@ -136,13 +160,37 @@ const products = [
     },
     // Cases
     {
-        name: "",
-        image: "../images/products/",
-        manufacturer: "",
+        name: "Corsair 4000D Airflow",
+        image: "corsair-4000d-airflow.png",
+        manufacturer: "Corsair",
         component: "case",
         rating: 5,
-        price: 0
+        price: 105
     },
+    {
+        name: "Fractal Design Meshify C",
+        image: "fractal-design-meshify-c.png",
+        manufacturer: "Fractal Design",
+        component: "case",
+        rating: 4,
+        price: 115
+    },
+    {
+        name: "Lian Li O11 Dynamic",
+        image: "lian-li-o11-dynamic.png",
+        manufacturer: "Lian Li",
+        component: "case",
+        rating: 5,
+        price: 170
+    },
+    {
+        name: "NZXT H510",
+        image: "nzxt-h510.png",
+        manufacturer: "NZXT",
+        component: "case",
+        rating: 3,
+        price: 90
+    }
 ]
 
 for (let i = 0; i < products.length; i++) {
