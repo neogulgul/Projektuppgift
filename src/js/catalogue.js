@@ -91,30 +91,86 @@ const products = [
     },
     // Motherboards
     {
-        name: "",
-        image: "",
-        manufacturer: "",
+        name: "Asus ROG STRIX B550-F GAMING",
+        image: "asus-rog-strix-b550-f-gaming.png",
+        manufacturer: "Asus",
         component: "motherboard",
         rating: 5,
-        price: 0
+        price: 195
+    },
+    {
+        name: "Asus TUF GAMING X570-PLUS",
+        image: "asus-tuf-gaming-x570-plus.png",
+        manufacturer: "",
+        component: "motherboard",
+        rating: 4,
+        price: 200
+    },
+    {
+        name: "Gigabyte Z590I AORUS ULTRA MINI",
+        image: "gigabyte-z590i-aorus-ultra-mini.png",
+        manufacturer: "Gigabyte",
+        component: "motherboard",
+        rating: 2,
+        price: 270
     },
     // Memory
     {
-        name: "",
-        image: "",
-        manufacturer: "",
+        name: "Corsair Vengeance 16 GB",
+        image: "corsair-vengeance-16gb.png",
+        manufacturer: "Corsair",
         component: "memory",
         rating: 5,
-        price: 0
+        price: 80
+    },
+    {
+        name: "Corsair Vengeance RGB 16 GB",
+        image: "corsair-vengeance-rgb-16gb.png",
+        manufacturer: "Corsair",
+        component: "memory",
+        rating: 5,
+        price: 85
+    },
+    {
+        name: "G.Skill Trident Z RGB 16 GB",
+        image: "g.skill-trident-z-rgb-16gb.png",
+        manufacturer: "G.Skill",
+        component: "memory",
+        rating: 5,
+        price: 95
     },
     // Storage
     {
-        name: "",
-        image: "",
-        manufacturer: "",
+        name: "Samsung 870 QVO 2 TB",
+        image: "samsung-870-qvo-2tb.png",
+        manufacturer: "Samsung",
         component: "storage",
         rating: 5,
-        price: 0
+        price: 190
+    },
+    {
+        name: "Samsung 970 EVO Plus 1 TB",
+        image: "samsung-970-evo-plus-1tb.png",
+        manufacturer: "Samsung",
+        component: "storage",
+        rating: 5,
+        price: 115
+    },
+    {
+        name: "Seagate Barracuda Compute 2 TB",
+        image: "seagate-barracuda-compute-2tb.png",
+        manufacturer: "Seagate",
+        component: "storage",
+        rating: 5,
+        price: 45
+    },
+    {
+        name: "Western Digital Blue SN550 1 TB",
+        image: "western-digital-blue-sn550-1tb.png",
+        manufacturer: "Western Digital",
+        component: "storage",
+        rating: 5,
+        price: 95
     },
     // Graphics cards
     {
@@ -123,7 +179,7 @@ const products = [
         manufacturer: "EVGA",
         component: "graphics-card",
         rating: 5,
-        price: 2000
+        price: 1500
     },
     {
         name: "GeForce RTX 3060 Ti Founders Edition",
@@ -131,7 +187,7 @@ const products = [
         manufacturer: "Nvidia",
         component: "graphics-card",
         rating: 5,
-        price: 399
+        price: 400
     },
     {
         name: "Gigabyte GeForce RTX 3070 Ti",
@@ -139,7 +195,7 @@ const products = [
         manufacturer: "Gigabyte",
         component: "graphics-card",
         rating: 5,
-        price: 800
+        price: 600
     },
     {
         name: "MSI GeForce RTX 3060",
@@ -147,16 +203,32 @@ const products = [
         manufacturer: "MSI",
         component: "graphics-card",
         rating: 4,
-        price: 500
+        price: 330
     },
     // Power Supplies
     {
-        name: "",
-        image: "",
-        manufacturer: "",
+        name: "Cooler Master V SFX 750 W",
+        image: "cooler-master-v-sfx-750w.png",
+        manufacturer: "Cooler Master",
         component: "power-supply",
         rating: 5,
-        price: 0
+        price: 115
+    },
+    {
+        name: "Corsair RMx 850 W",
+        image: "corsair-rmx-850w.png",
+        manufacturer: "Corsair",
+        component: "power-supply",
+        rating: 5,
+        price: 135
+    },
+    {
+        name: "SeaSonic FOCUS Plus 550 W",
+        image: "seasonic-focus-plus-550w.png",
+        manufacturer: "SeaSonic",
+        component: "power-supply",
+        rating: 5,
+        price: 85
     },
     // Cases
     {
