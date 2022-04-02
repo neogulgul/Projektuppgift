@@ -101,7 +101,7 @@ const products = [
     {
         name: "Asus TUF GAMING X570-PLUS",
         image: "asus-tuf-gaming-x570-plus.png",
-        manufacturer: "",
+        manufacturer: "Asus",
         component: "motherboard",
         rating: 4,
         price: 200
