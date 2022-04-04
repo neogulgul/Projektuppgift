@@ -14,9 +14,10 @@ searchSpan.innerText = `"${searchValue}"`
 
 let results = false
 
-for (i = 0; i < products.length; i++) {
-	let product = products[i]
-	let productInfo = product.name + product.manufacturer + product.component
+// loads search results
+products.forEach((product) => {
+	let component = product.component.replace("-", " ")
+	let productInfo = product.name + product.manufacturer + component
 
 	if (productInfo.toLowerCase().includes(searchValue.toLowerCase()) && searchValue !== "") {
 		results = true
@@ -52,9 +53,9 @@ for (i = 0; i < products.length; i++) {
 
 		document.querySelector("tbody").innerHTML += productMarkup
 	}
-}
+})
 
-if (results === false) {
+if (!results) {
 	document.querySelector("table").style.display = "none"
 	document.querySelector("main").innerHTML += "<h2>No results.</h2>"
 }

@@ -2,6 +2,8 @@
 
 #profile {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	align-items: center;
 	gap: 25px;
 	margin-top: 50px;
@@ -11,7 +13,8 @@
 }
 
 #picture img {
-	width: 250px;
+	width: 100%;
+	max-width: 250px;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	object-position: center;
