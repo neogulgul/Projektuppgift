@@ -35,7 +35,7 @@ aside {
 
 #information h3 {
 	margin-top: 25px;
-	padding-top: 10px;
+	padding: 10px 0;
 	border-top: 1px solid var(--foreground-alt);
 }
 

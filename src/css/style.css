@@ -103,233 +103,215 @@ h3 {
 ================================================== */
 
 header {
-    height: 125px;
-	user-select: none;
-}
-
-header section:first-of-type {
-    position: relative;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: var(--background);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 125px;
 }
 
 .icon-text {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
-/* logo */
+/* logo and icons */
+
+#logo-and-icons {
+	position: absolute;
+	z-index: 10;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100vw;
+	height: 125px;
+	padding: 0 25px;
+	background-color: var(--background);
+}
 
 #logo {
 	--height: 2em;
-    position: absolute;
-    left: 25px;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	font-size: var(--height);
 }
 
 #logo svg {
-    width: var(--height);
-    height: var(--height);
-    fill: var(--main);
+	width: var(--height);
+	height: var(--height);
+	fill: var(--main);
 }
-
-#logo p {
-    font-size: var(--height);
-    font-weight: bold;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-}
-
-/* icons */
 
 #icons {
-    position: absolute;
-    right: 25px;
-    display: flex;
-    gap: 25px;
+	display: flex;
+	gap: 25px;
 }
 
 #icons svg {
-    width: 35px;
-    height: 35px;
-    padding: 10px;
-    border-radius: 5px;
-    box-sizing: content-box;
-    transition: 0.3s;
+	width: 35px;
+	height: 35px;
+	padding: 10px;
+	box-sizing: content-box;
+	transition: 0.3s;
 }
 
-#icons svg:hover {
-    fill: var(--main);
+#icons a:hover svg {
+	fill: var(--main);
 }
 
 #cart {
-    position: relative;
+	position: relative;
 }
 
 #cart-notice {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--background);
-    border-radius: 50%;
-    font-size: 60%;
-    transition: 0.3s;
-    background-color: var(--foreground);
-    color: var(--background);
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	border: 2px solid var(--background);
+	border-radius: 50%;
+	font-size: 60%;
+	transition: 0.3s;
+	background-color: var(--foreground);
+	color: var(--background);
 }
 
 #cart:hover #cart-notice {
-    border-color: var(--background-alt);
-    background-color: var(--main);
-    color: var(--background-alt);
+	background-color: var(--main);
 }
 
 #hamburger {
 	display: none;
-	cursor: pointer;
 }
 
-/* search & nav */
+/* search and navbar */
 
-#search-and-nav {
+#search-and-navbar {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+}
+
+#search {
+	--side-position: 10px;
+	position: relative;
+	z-index: 10;
+	display: flex;
+	align-items: center;
 	width: 100%;
-	height: 100%;
+	max-width: 500px;
+	height: 75px;
 }
 
-/* search */
-
-#search-field {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 500px;
-    height: 60%;
+#search input {
+	width: 100%;
+	height: 50%;
+	padding: 0 40px;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--background-alt);
 }
 
-#search-field input {
-    width: 100%;
-    height: 40px;
-    padding: 0 40px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--background-alt);
+#search input:focus {
+	outline: 2px solid var(--main);
 }
 
-#search-field input:focus {
-    outline: 2px solid var(--main);
+#search svg {
+	position: absolute;
+	cursor: pointer;
 }
 
-#search-field svg:first-of-type {
-    position: absolute;
-    left: 10px;
+#search svg:first-of-type {
+	left: var(--side-position);
 }
 
-#search-field svg:last-of-type {
-    position: absolute;
-    right: 10px;
-    display: none;
-    cursor: pointer;
+#search svg:last-of-type {
+	display: none;
+	right: var(--side-position);
 }
 
-/* nav */
-
-nav {
-    display: flex;
-    justify-content: center;
-    height: 40%;
-    background-color: var(--background);
+#navbar nav {
+	position: relative;
+	z-index: 10;
+	display: flex;
+	gap: 100px;
 }
 
-#nav-links {
-    display: flex;
+#navbar nav a {
+	display: flex;
+	align-items: center;
+	height: 50px;
+}
+
+#navbar nav a svg {
+	transition: 0.3s;
+}
+
+#navbar nav a:hover svg {
+	fill: var(--main);
+}
+
+a.browse-products {
+	cursor: pointer;
+}
+
+a.browse-products.active svg {
+	fill: var(--main);
+}
+
+a.browse-products.active svg:last-of-type {
+	transform: rotate(180deg);
+}
+
+/* browse products */
+
+div.browse-products {
+	position: absolute;
+	left: 0;
+	z-index: 5;
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-    gap: 100px;
-	padding: 0 25px;
-}
-
-#nav-links a {
-    height: 100%;
-}
-
-#nav-links svg {
-    transition: 0.3s;
-}
-
-#nav-links li:hover svg {
-    fill: var(--main);
-}
-
-li.browse-products {
-    cursor: pointer;
-}
-
-li.browse-products.active svg {
-    fill: var(--main);
-}
-
-li.browse-products.active svg:last-child {
-    transform: rotate(180deg);
-}
-
-section.browse-products {
-    position: absolute;
-    z-index: 10;
-    display: flex;
-    flex-wrap: wrap;
-	justify-content: center;
-    gap: 20px;
-    width: 100vw;
-    padding: 20px;
+	gap: 25px;
+	width: 100vw;
+	padding: 25px;
 	transform: translateY(-100%);
-    transition: 0.3s;
-    background-color: var(--background-alt);
+	transition: 0.3s;
+	background-color: var(--background-alt);
 }
 
-section.browse-products.active {
+div.browse-products.active {
 	transform: translateY(0);
 }
 
-section.browse-products a {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-	width: calc(25% - 15px);
-	min-width: 250px;
-	height: 200px;
-    padding: 20px;
-    border: 1px solid var(--foreground-alt);
-    transition: 0.3s;
-    background-color: var(--background);
-    color: var(--foreground);
+.product-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 250px;
+	height: 250px;
+	border: 1px solid var(--foreground-alt);
+	border-radius: 5px;
+	transition: 0.3s;
+	background-color: var(--background);
 }
 
-section.browse-products a:hover {
-    box-shadow: inset 0 0 0 2px var(--main);
-    background-color: var(--main-alt);
+.product-card:hover {
+	border-color: var(--main);
+	box-shadow: inset 0 0 0 2px var(--main);
+	background-color: var(--main-alt);
 }
 
-section.browse-products a img {
-    height: 150px;
-    aspect-ratio: 1 / 1;
-    object-position: center;
-    object-fit: contain;
+.product-card img {
+	width: 150px;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	object-position: center;
 }
 
 /* ==================================================
@@ -395,27 +377,49 @@ footer p {
 ================================================== */
 
 @media screen and (max-width: 1024px) {
-	#search-and-nav {
+	#hamburger {
+		display: inline;
+		cursor: pointer;
+	}
+
+	#hamburger.active svg {
+		fill: var(--main);
+	}
+
+	#search-and-navbar {
 		position: absolute;
-		top: 125px;
+		top: 0;
+		z-index: 5;
+		transform: translateY(-100%);
 		transition: 0.3s;
-		transform: translateX(100%);
+	}
+
+	#search-and-navbar.active {
+		transform: translateY(125px);
+	}
+
+	#search {
+		--side-position: 60px;
+		width: 100vw;
+		max-width: none;
+		padding: 0 50px;
 		background-color: var(--background);
 	}
 
-	#search-and-nav.active {
-		transform: translateX(0);
-	}
-
-	#hamburger {
-		display: inline;
+	#navbar nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 25px;
+		width: 100vw;
+		padding: 0 25px;
+		background-color: var(--background);
 	}
 }
 
 @media screen and (max-width: 550px) {
-	#logo, #icons {
-		position: static;
+	#logo-and-icons {
+		justify-content: center;
+		flex-direction: column;
 	}
 }
-
-/* todo: make responsive */
