@@ -268,3 +268,20 @@ const products = [
 for (let i = 0; i < products.length; i++) {
     products[i].id = i
 }
+
+function getCartTotal() {
+	let sum = 0
+
+	Object.keys(localStorage).forEach((product) => {
+		if (product === "loginStatus") {
+			return
+		}
+
+		productPrice = products[product].price
+		productQuantity = parseInt(localStorage.getItem(product))
+
+		sum += productPrice * productQuantity
+	})
+
+	return sum
+}

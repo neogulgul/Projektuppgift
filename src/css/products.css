@@ -16,15 +16,15 @@ aside {
     width: 25%;
 }
 
-/* part list */
+/* parts list */
 
-#part-list {
+#parts-list {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
 }
 
-#part-list h3 {
+#parts-list h3 {
     display: flex;
     flex-direction: column;
     gap: 10px;

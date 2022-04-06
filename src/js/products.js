@@ -16,7 +16,7 @@ function addToProductsMain() {
     <section id="banner">Choose ${a} ${component.replace("cpu", "CPU").replace("-", " ")}</section>
     <section id="products">
         <aside>
-			<div id="part-list">
+			<div id="parts-list">
 				<h3>
 					Parts
 					<span>0</span>
@@ -145,6 +145,19 @@ addToProductsMain()
 createProducts()
 createRatingFilter()
 
+const partsQuantity = document.querySelector("#parts-list h3:first-of-type span")
+const partsTotal = document.querySelector("#parts-list h3:last-of-type span")
+
+function updatePartList() {
+	let quantity = getCartQuantity()
+	let total = getCartTotal()
+
+	partsQuantity.innerText = quantity
+	partsTotal.innerText = "$" + total
+}
+
+updatePartList()
+
 let buttons = document.querySelectorAll("tr button")
 
 buttons.forEach((button) => {
@@ -158,6 +171,7 @@ buttons.forEach((button) => {
 		}
 
 		updateCart()
+		updatePartList()
 	}
 })
 

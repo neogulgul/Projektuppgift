@@ -1,5 +1,3 @@
-let totalPrice = 0
-
 function loadItems() {
 	Object.keys(localStorage).forEach((item) => {
 		if (item === "loginStatus") {
@@ -9,8 +7,6 @@ function loadItems() {
 		let product = products[item]
 		let quantity = parseInt(localStorage.getItem(item))
 		let price = product.price * quantity
-
-		totalPrice += price
 
 		let itemRow = `
 		<tr id="${product.id}">
@@ -43,7 +39,7 @@ function loadItems() {
 }
 
 function updateTotal() {
-	document.querySelector("#checkout span").innerText = "$" + totalPrice
+	document.querySelector("#checkout span").innerText = "$" + getCartTotal()
 }
 
 function cartDisplay() {
@@ -57,7 +53,7 @@ loadItems()
 updateTotal()
 cartDisplay()
 
-let arrows = document.querySelectorAll(".arrows svg")
+const arrows = document.querySelectorAll(".arrows svg")
 
 arrows.forEach((arrow) => {
 	arrow.onmousedown = (event) => {
@@ -70,10 +66,8 @@ arrows.forEach((arrow) => {
 
 			if (arrow.classList.contains("up")) {
 				quantity += 1
-				totalPrice += item.price
 			} else if (arrow.classList.contains("down")) {
 				quantity -= 1
-				totalPrice -= item.price
 			}
 
 			if (quantity > 0) {
@@ -92,19 +86,15 @@ arrows.forEach((arrow) => {
 	}
 })
 
-let removeButtons = document.querySelectorAll(".remove")
+const removeButtons = document.querySelectorAll(".remove")
 
 removeButtons.forEach((button) => {
 	button.onclick = () => {
 		let itemRow = button.parentElement.parentElement.parentElement.parentElement
 		let itemId = itemRow.id
-		let item = products[parseInt(itemId)]
-		let quantity = parseInt(localStorage.getItem(itemId))
 
 		localStorage.removeItem(itemId)
 		itemRow.remove()
-
-		totalPrice -= item.price * quantity
 
 		updateCart()
 		updateTotal()
