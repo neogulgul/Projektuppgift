@@ -108,6 +108,9 @@ const footer = `
 			<a href="${path}products/case.html">Case</a>
 		</div>
 	</section>
+	<a href="${path}contact.html">
+		<button>Contact us</button>
+	</a>
     <p>&copy; 2022 PCSpace</p>
 </footer>`
 

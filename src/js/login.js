@@ -49,7 +49,7 @@ autofill.onclick = () => {
 
 const eye = document.querySelector("#eye")
 const eyeOff = document.querySelector("#eye-off")
-
+// todo: make this one thing that changes innerHTML instead of two separate things
 eye.onclick = () => {
 	eye.style.display = "none"
 	eyeOff.style.display = "inline"

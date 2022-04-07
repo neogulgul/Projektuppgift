@@ -70,6 +70,10 @@ button:active {
     color: var(--main-alt);
 }
 
+p {
+	text-align: justify;
+}
+
 h1 {
     font-size: 3em;
     text-transform: capitalize;
@@ -341,8 +345,8 @@ footer {
 	background-color: var(--background-alt);
 }
 
-footer p {
-	margin-top: 50px;
+footer button {
+	margin: 50px 0;
 }
 
 #directory {

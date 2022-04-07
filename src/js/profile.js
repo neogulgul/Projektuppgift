@@ -34,7 +34,9 @@ if (localStorage.getItem("loginStatus") === null) {
 	document.querySelector("#profile").style.display = "none"
 	document.querySelector("main").innerHTML += `
 	<h2>You are currently not logged in.</h2>
-	<a id="log-in" href="login.html">Log in</a>`
+	<a id="log-in" href="login.html">
+		<button>Log in</button>
+	</a>`
 } else {
 	document.querySelector("#picture p").innerText = localStorage.getItem("loginStatus")
 }
