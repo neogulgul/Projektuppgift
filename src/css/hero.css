@@ -83,3 +83,13 @@ main {
 .dot.fill {
     background-color: var(--foreground);
 }
+
+@media screen and (max-width: 550px) {
+	.arrow {
+		display: none;
+	}
+
+	.slide-content {
+		padding: 25px;
+	}
+}

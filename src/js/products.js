@@ -3,8 +3,6 @@ const component = window.location.pathname.split("/src/products/")[1].split(".ht
 const star = `<svg class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928z"/></svg>`
 const starEmpty = `<svg class="star empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928z"/></svg>`
 
-let highestPrice = 0
-
 function addToProductsMain() {
     let a = "a"
 
@@ -14,62 +12,27 @@ function addToProductsMain() {
 
     main.innerHTML = `
     <section id="banner">Choose ${a} ${component.replace("cpu", "CPU").replace("-", " ")}</section>
-    <section id="products">
-        <aside>
-			<div id="parts-list">
-				<h3>
-					Parts
-					<span>0</span>
-				</h3>
-				<h3>
-					Total
-					<span>$0</span>
-				</h3>
-			</div>
-            <div id="filters">
-                <div id="price" class="filter">
-                    <h3>Price</h3>
-                </div>
-                <div id="manufacturer" class="filter">
-                    <h3>Manufacturer</h3>
-                </div>
-                <div id="rating" class="filter">
-                    <h3>Rating</h3>
-                </div>
-            </div>
-        </aside>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Rating</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </section>`
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Rating</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>`
 }
 
 function createProducts() {
-    const componentManufacturers = []
-    const manufacturerFilter = document.querySelector("#manufacturer")
+	let svgAdd = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 6.414L.757 3.172l1.415-1.415L5.414 5h15.242a1 1 0 0 1 .958 1.287l-2.4 8a1 1 0 0 1-.958.713H6v2h11v2H5a1 1 0 0 1-1-1V6.414zM5.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm12 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>`
+
+	if (window.location.href.includes("selection")) {
+		svgAdd = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5.33 3.271a3.5 3.5 0 0 1 4.254 4.963l10.709 10.71-1.414 1.414-10.71-10.71a3.502 3.502 0 0 1-4.962-4.255L5.444 7.63a1.5 1.5 0 1 0 2.121-2.121L5.329 3.27zm10.367 1.884l3.182-1.768 1.414 1.414-1.768 3.182-1.768.354-2.12 2.121-1.415-1.414 2.121-2.121.354-1.768zm-6.718 8.132l1.414 1.414-5.303 5.303a1 1 0 0 1-1.492-1.327l.078-.087 5.303-5.303z"/></svg>`
+	}
 
     products.forEach((product) => {
         if (product.component === component) {
-            if (product.price > highestPrice) {
-                highestPrice = product.price
-            }
-    
-            if (componentManufacturers.includes(product.manufacturer) !== true) {
-                componentManufacturers.push(product.manufacturer)
-                manufacturerFilter.innerHTML += `
-                <div class="checkbox-container">
-                    <input type="checkbox">
-                    <p>${product.manufacturer}</p>
-                </div>`
-            }
-    
             let rating = ``
             for (let i = 0; i < 5; i++) {
                 if (i < product.rating) {
@@ -82,20 +45,23 @@ function createProducts() {
             productMarkup = `
             <tr id="${product.id}">
                 <td>
-                    <div class="name-section">
+                    <div class="name-column">
                         <img src="../images/products/${product.component}/${product.image}">
-                        <p>${product.name}</p>
+                        ${product.name}
                     </div>
                 </td>
                 <td>
-                    <div class="rating-section">
+                    <div class="rating-column">
                         ${rating}
                     </div>
                 </td>
                 <td>
-                    <div class="price-section">
-                        <p>$${product.price}</p>
-                        <button>Add</button>
+                    <div class="price-column">
+                        $${product.price}
+                        <button>
+							${svgAdd}
+							Add
+						</button>
                     </div>
                 </td>
             </tr>`
@@ -105,241 +71,30 @@ function createProducts() {
     })
 }
 
-function createPriceSlider() {
-    document.querySelector("#price").innerHTML += `
-    <div id="price-slider">
-        <p>$${rangeMin}</p>
-        <input type="range" id="range-min" min="${rangeMin}" max="${rangeMax}" value="${rangeMin}" step="${rangeStep}">
-        <p>$${rangeMax}</p>
-        <input type="range" id="range-max" min="${rangeMin}" max="${rangeMax}" value="${rangeMax}" step="${rangeStep}">
-        <div id="progress-slider"></div>
-    </div>`
-}
-
-function createRatingFilter() {
-    let ratingFilter = document.querySelector("#rating")
-
-    for (let i = 0; i < 5; i++) {
-        let rating = ``
-        let stars = 5 - i
-
-        for (let j = 0; j < 5; j++) {
-            if (j < stars) {
-                rating += star
-            } else {
-                rating += starEmpty
-            }
-        }
-
-        ratingFilter.innerHTML += `
-        <div class="checkbox-container">
-            <input type="checkbox">
-            <div id="${5 - i}" class="star-rating">
-                ${rating}
-            </div>
-        </div>`
-    }
-}
-
 addToProductsMain()
 createProducts()
-createRatingFilter()
-
-const partsQuantity = document.querySelector("#parts-list h3:first-of-type span")
-const partsTotal = document.querySelector("#parts-list h3:last-of-type span")
-
-function updatePartList() {
-	let quantity = getCartQuantity()
-	let total = getCartTotal()
-
-	partsQuantity.innerText = quantity
-	partsTotal.innerText = "$" + total
-}
-
-updatePartList()
 
 let buttons = document.querySelectorAll("tr button")
 
 buttons.forEach((button) => {
 	button.onclick = () => {
 		let chosenProductId = button.parentElement.parentElement.parentElement.id
-		if (localStorage.getItem(chosenProductId) === null) {
-			localStorage.setItem(chosenProductId, 1)
+
+		if (window.location.href.includes("selection")) {
+			localStorage.setItem(component, chosenProductId)
+			window.location.assign("../system-builder.html")
 		} else {
-			let chosenProductQuantity = parseInt(localStorage.getItem(chosenProductId))
-			localStorage.setItem(chosenProductId, chosenProductQuantity + 1)
+			let quantity
+
+			if (localStorage.getItem(chosenProductId) === null) {
+				quantity = 1
+			} else {
+				quantity = parseInt(localStorage.getItem(chosenProductId)) + 1
+			}
+
+			localStorage.setItem(chosenProductId, quantity)
 		}
 
 		updateCart()
-		updatePartList()
 	}
 })
-
-const rangeMin = 0
-const rangeMax = Math.ceil(highestPrice / 100) * 100 // rounding up to nearest hundred
-let minValue = rangeMin
-let maxValue = rangeMax
-
-const rangeStep = rangeMax / 10
-
-createPriceSlider()
-
-const rangeInputs = document.querySelectorAll("#price-slider input")
-const moneyMin = document.querySelector("#price-slider p:first-of-type")
-const moneyMax = document.querySelector("#price-slider p:last-of-type")
-const progressSlider = document.querySelector("#progress-slider")
-
-let progressWidth 	= 100   // starts at 100%
-let progressLeft 	= 0    // starts at 0%
-let progressRight 	= 0   // starts at 0%
-
-let lastMinValue = minValue
-let lastMaxValue = maxValue
-
-rangeInputs.forEach(input => {
-    input.oninput = () => {
-        let inputValue = parseInt(input.value)
-
-        if (input.id === "range-min") {
-			let distance = inputValue - lastMinValue
-			let stepPercentage = distance / rangeMax * 100
-
-            if (inputValue >= maxValue) {
-                input.value = maxValue - rangeStep
-				minValue = maxValue - rangeStep
-
-				progressWidth = 10
-				progressLeft = minValue / rangeMax * 100
-            } else if (inputValue <= rangeMin) {
-				input.value = rangeMin
-				minValue = rangeMin
-
-				progressWidth = 100 - progressRight
-				progressLeft = 0
-			} else {
-                minValue = inputValue
-
-				progressWidth -= stepPercentage
-				progressLeft += stepPercentage
-
-                lastMinValue = minValue
-            }
-
-			progressSlider.style.width = progressWidth + "%"
-			progressSlider.style.left = progressLeft + "%"
-
-			moneyMin.innerText = "$" + minValue
-        }
-
-        if (input.id === "range-max") {
-			let distance = inputValue - lastMaxValue
-			let stepPercentage = distance / rangeMax * 100
-
-            if (inputValue <= minValue) {
-                input.value = minValue + rangeStep
-				maxValue = minValue + rangeStep
-
-				progressWidth = 10
-				progressRight = 100 - maxValue / rangeMax * 100
-            } else if (inputValue >= rangeMax) {
-				input.value = rangeMax
-				maxValue = rangeMax
-
-				progressWidth = 100 - progressLeft
-				progressRight = 0
-			} else {
-                maxValue = inputValue
-
-				progressWidth += stepPercentage
-				progressRight -= stepPercentage
-
-                lastMaxValue = maxValue
-            }
-
-			progressSlider.style.width = progressWidth + "%"
-			progressSlider.style.right = progressRight + "%"
-
-			moneyMax.innerText = "$" + maxValue
-        }
-    }
-
-	input.onclick = () => {
-		window.location.assign(window.location.pathname + `?price=${minValue},${maxValue}`)
-	}
-})
-
-// filters
-const params = new Proxy(new URLSearchParams(window.location.search), {
-	get: (searchParams, prop) => searchParams.get(prop)
-})
-
-const manufacturerCheckboxes = document.querySelectorAll("#manufacturer input")
-const ratingCheckboxes = document.querySelectorAll("#rating input")
-
-manufacturerCheckboxes.forEach((checkbox) => {
-	checkbox.onclick = () => {
-		const checkboxValue = checkbox.parentElement.children[1].innerText
-		const checkboxStatus = checkbox.checked
-
-		if (checkboxStatus === true) { 	// checked
-			if (params.manufacturer === null) {
-				window.location.assign(window.location.pathname + `?manufacturer=${checkboxValue}`)
-			} else {
-				window.location.assign(window.location.pathname + `?manufacturer=${params.manufacturer + checkboxValue}`)
-			}
-		} else { 						// unchecked
-			newManufacturerParam = params.manufacturer.replace(checkboxValue, "")
-
-			if (newManufacturerParam === "") {
-				window.location.assign(window.location.pathname)
-			} else {
-				window.location.assign(window.location.pathname + `?manufacturer=${newManufacturerParam}`)
-			}
-		}
-	}
-})
-
-ratingCheckboxes.forEach((checkbox) => {
-	checkbox.onclick = () => {
-		const checkboxValue = checkbox.parentElement.children[1].id
-		const checkboxStatus = checkbox.checked
-
-		if (checkboxStatus === true) { 	// checked
-			if (params.rating === null) {
-				window.location.assign(window.location.pathname + `?rating=${checkboxValue}`)
-			} else {
-				window.location.assign(window.location.pathname + `?rating=${params.rating + checkboxValue}`)
-			}
-		} else { 						// unchecked
-			newRatingParam = params.rating.replace(checkboxValue, "")
-
-			if (newRatingParam === "") {
-				window.location.assign(window.location.pathname)
-			} else {
-				window.location.assign(window.location.pathname + `?rating=${newRatingParam}`)
-			}
-		}
-	}
-})
-
-if (params.manufacturer !== null) {
-	for (let i = 0; i < manufacturerCheckboxes.length; i++) {
-		let checkboxValue = manufacturerCheckboxes[i].parentElement.children[1].innerText
-	
-		if (params.manufacturer.includes(checkboxValue)) {
-			manufacturerCheckboxes[i].checked = true
-		}
-	}
-}
-
-if (params.rating !== null) {
-	for (let i = 0; i < ratingCheckboxes.length; i++) {
-		let checkboxValue = ratingCheckboxes[i].parentElement.children[1].id
-
-		if (params.rating.includes(checkboxValue)) {
-			ratingCheckboxes[i].checked = true
-		}
-	}
-}
-
-// todo: make it so different filters can be active at the same time

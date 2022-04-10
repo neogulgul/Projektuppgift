@@ -33,19 +33,19 @@ products.forEach((product) => {
 		productMarkup = `
 		<tr id="${product.id}">
 			<td>
-				<div class="name-section">
+				<div class="name-column">
 					<img src="images/products/${product.component}/${product.image}">
-					<p>${product.name}</p>
+					${product.name}
 				</div>
 			</td>
 			<td>
-				<div class="rating-section">
+				<div class="rating-column">
 					${rating}
 				</div>
 			</td>
 			<td>
-				<div class="price-section">
-					<p>$${product.price}</p>
+				<div class="price-column">
+					$${product.price}
 					<button>Add</button>
 				</div>
 			</td>

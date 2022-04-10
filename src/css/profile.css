@@ -12,6 +12,11 @@
 	background-color: var(--background-alt);
 }
 
+#picture {
+	display: flex;
+	flex-direction: column;
+}
+
 #picture img {
 	width: 100%;
 	max-width: 250px;
@@ -21,7 +26,7 @@
 	border-radius: 50%;
 }
 
-#picture p {
+#picture span {
 	margin-top: 25px;
 	text-align: center;
 }

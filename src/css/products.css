@@ -1,165 +1,22 @@
 @import "style.css";
 
-#products {
-    display: flex;
-    width: 100%;
-    max-width: 1920px;
-    gap: 50px;
-	padding-top: 50px;
-}
-
-/* ==================================================
-    # aside styling
-================================================== */
-
-aside {
-    width: 25%;
-}
-
-/* parts list */
-
-#parts-list {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-#parts-list h3 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* filters */
-
-.filter {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 25px 0;
-    border-top: 1px solid var(--foreground-alt);
-}
-
-/* price slider */
-
-#price-slider {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 3px;
-    margin-top: 40px;
-    border-radius: 3px;
-    background-color: var(--foreground-alt);
-}
-
-#price-slider p {
-    position: absolute;
-    top: -40px;
-}
-
-#price-slider p:first-of-type {
-    left: 0;
-}
-
-#price-slider p:last-of-type {
-    right: 0;
-}
-
-input[type="range"] {
-    appearance: none;
-    pointer-events: none;
-    position: absolute;
-    width: 100%;
-    background: none;
-}
-
-input[type="range"]::-webkit-slider-thumb { /* chrome */
-    appearance: none;
-    pointer-events: auto;
-    border: none;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-	cursor: pointer;
-    background-color: var(--main);
-}
-
-input[type="range"]::-moz-range-thumb { /* firefox */
-    appearance: none;
-    pointer-events: auto;
-    border: none;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-	cursor: pointer;
-    background-color: var(--main);
-}
-
-#progress-slider {
-    position: absolute;
-    pointer-events: none;
-    width: 100%;
-    height: 3px;
-    border-radius: 3px;
-    background-color: var(--main);
-}
-
-/* checkboxes */
-
-.checkbox-container {
-    display: flex;
-    gap: 10px;
-}
-
-input[type="checkbox"] {
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border: 2px solid var(--foreground-alt);
-    border-radius: 5px;
-    background-color: var(--foreground);
-}
-
-input[type="checkbox"]:hover {
-    opacity: 0.8;
-}
-
-input[type="checkbox"]:checked {
-    border-color: var(--main);
-    background: url(../images/svg/check.svg);
-    background-color: var(--main-alt);
-    background-size: contain;
-    background-position: center;
-}
-
-/* rating */
-
-.star-rating {
-    display: flex;
-    align-items: center;
-}
-
-.star-rating svg {
-    width: 15px;
-    height: 15px;
-}
-
 /* ==================================================
     # table styling
 ================================================== */
 
 table {
-    width: 75%;
+	width: 100%;
+	margin-top: 50px;
     border-collapse: collapse;
 }
 
-tr {
-    border-bottom: 1px solid var(--foreground-alt);
+tbody tr {
+	border-top: 1px solid var(--foreground-alt);
+	border-bottom: 1px solid var(--foreground-alt);
 }
 
 th {
-    height: 40px;
+	padding-bottom: 20px;
 	text-align: left;
 }
 
@@ -175,15 +32,16 @@ td div {
 
 /* name */
 
-.name-section img {
-    height: 60px;
+.name-column {
+	padding-right: 20px;
+}
+
+.name-column img {
+	padding-right: 20px;
+    height: 80px;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     object-position: center;
-}
-
-.name-section p {
-    padding: 0 20px;
 }
 
 /* rating */
@@ -197,6 +55,58 @@ td div {
 }
 
 /* price */
-.price-section {
+.price-column {
+	gap: 20px;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 850px) {
+	thead {
+		display: none;
+	}
+
+	tr {
+		position: relative;
+	}
+
+	td:first-child {
+		width: 75%;
+	}
+
+	td:nth-child(2) {
+		position: absolute;
+		top: calc(100% - 50px);
+		left: 80px;
+	}
+
+	td:last-child {
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	tr {
+		display: flex;
+		flex-direction: column;
+		padding: 20px 0;
+	}
+
+	td {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 50px;
+	}
+
+	td:first-child {
+		width: 100%;
+	}
+
+	td:nth-child(2) {
+		position: static;
+	}
+
+	td:last-child {
+		justify-content: right;
+	}
 }

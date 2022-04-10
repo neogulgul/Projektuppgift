@@ -1,14 +1,26 @@
 @import "style.css";
 
 table {
-	width: 80%;
-    max-width: 1920px;
-    padding: 25px;
+	width: 100%;
+	margin-top: 50px;
 	border-collapse: collapse;
 }
 
+tr {
+	position: relative;
+	padding: 25px 0;
+}
+
 th {
-    width: calc(100% / 3);
+	padding-bottom: 20px;
+}
+
+th:first-child {
+	width: 50%;
+}
+
+tbody td {
+	padding: 20px 0;
 }
 
 th:first-child {
@@ -19,17 +31,29 @@ th:last-child {
 	text-align: right;
 }
 
-tbody td {
-	border-top: 2px solid var(--foreground-alt);
-	border-bottom: 2px solid var(--foreground-alt);
+tbody tr {
+	border-top: 1px solid var(--foreground-alt);
+	border-bottom: 1px solid var(--foreground-alt);
 }
 
-th, .product-column, .quantity-column, .subtotal-column, #checkout {
-	padding: 25px;
+.remove {
+	position: absolute;
+	top: calc(50% - 12.5px);
+	left: -37.5px;
+	width: 25px;
+	height: 25px;
+	box-sizing: content-box;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.remove:hover {
+	fill: var(--warning);
 }
 
 .product-column {
 	display: flex;
+	gap: 20px;
 }
 
 .product-column img {
@@ -38,31 +62,17 @@ th, .product-column, .quantity-column, .subtotal-column, #checkout {
     object-fit: contain;
 }
 
-.product-column aside {
-	display: flex;
-	flex-direction: column;
-	margin-left: 25px;
-}
-
-.remove {
-	margin-top: auto;
-	width: 100px;
-}
-
-.remove:hover {
-	border-color: var(--warning);
-	background-color: var(--warning);
-	color: var(--foreground);
+tfoot td {
+	padding-top: 20px;
 }
 
 .quantity-column {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 10px;
 }
 
-.quantity-column p {
+.quantity-column span {
 	width: 40px;
 	text-align: center;
 }
@@ -90,16 +100,45 @@ th, .product-column, .quantity-column, .subtotal-column, #checkout {
 }
 
 #checkout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 20px;
 	max-width: 300px;
 	margin-left: auto;
 }
 
-#checkout p {
-	display: flex;
-	justify-content: space-between;
-}
-
 #checkout button {
 	width: 100%;
-	margin-top: 10px;
+}
+
+@media screen and (max-width: 700px) {
+	thead {
+		display: none;
+	}
+
+	tr td:nth-child(2) {
+		position: absolute;
+		bottom: 30px;
+		left: 120px;
+		display: flex;
+		align-self: center;
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.product-column {
+		flex-direction: column;
+	}
+
+	.product-column img {
+		width: 50px;
+	}
+
+	tr td:nth-child(2) {
+		top: 30px;
+		bottom: initial;
+		left: 70px;
+	}
 }

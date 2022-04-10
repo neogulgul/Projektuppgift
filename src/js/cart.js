@@ -1,9 +1,6 @@
 function loadItems() {
-	Object.keys(localStorage).forEach((item) => {
-		if (item === "loginStatus") {
-			return
-		}
-
+	const items = itemsInCart()
+	items.forEach((item) => {
 		let product = products[item]
 		let quantity = parseInt(localStorage.getItem(item))
 		let price = product.price * quantity
@@ -14,9 +11,10 @@ function loadItems() {
 				<div class="product-column">
 					<img src="images/products/${product.component}/${product.image}">
 					<aside>
-						<p>${product.name}</p>
-						<p>$${product.price}</p>
-						<button class="remove">Remove</button>
+						${product.name}
+						<br>
+						$${product.price}
+						<svg class="remove" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8zm2 2v10h12V10H6zm3 2h2v6H9v-6zm4 0h2v6h-2v-6zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5zm2-1v1h6V4H9z"/></svg>
 					</aside>
 				</div>
 			</td>
@@ -26,7 +24,7 @@ function loadItems() {
 						<svg class="up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12"><path d="M 0,12 L 24,12 L12,0 L 0,12"/></svg>
 						<svg class="down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12"><path d="M 0,0 L 24,0 L12,12 L 0,0"/></svg>
 					</div>
-					<p>${quantity}</p>
+					<span>${quantity}</span>
 				</div>
 			</td>
 			<td>

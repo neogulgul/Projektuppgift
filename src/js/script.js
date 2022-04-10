@@ -109,9 +109,12 @@ const footer = `
 		</div>
 	</section>
 	<a href="${path}contact.html">
-		<button>Contact us</button>
+		<button>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 8.994A5.99 5.99 0 0 1 8 3h8c3.313 0 6 2.695 6 5.994V21H8c-3.313 0-6-2.695-6-5.994V8.994zM20 19V8.994A4.004 4.004 0 0 0 16 5H8a3.99 3.99 0 0 0-4 3.994v6.012A4.004 4.004 0 0 0 8 19h12zm-6-8h2v2h-2v-2zm-6 0h2v2H8v-2z"/></svg>
+			Contact us
+		</button>
 	</a>
-    <p>&copy; 2022 PCSpace</p>
+	Copyright &copy; 2022 PCSpace
 </footer>`
 
 const main = document.querySelector("main")
@@ -202,18 +205,31 @@ document.body.onmousedown = (event) => {
 	}
 }
 
+// get items in cart
+function itemsInCart() {
+	items = []
+
+	Object.keys(localStorage).forEach((item) => {
+		if (isNaN(parseInt(item))) {
+			return
+		}
+
+		items.push(item)
+	})
+
+	return items
+}
+
 // update cart
 const cartNotice = document.querySelector("#cart-notice")
 
 function getCartQuantity() {
 	let cartQuantity = 0
 
-    Object.keys(localStorage).forEach((product) => {
-		if (product === "loginStatus") {
-			return
-		}
+	const items = itemsInCart()
 
-        cartQuantity += parseInt(localStorage.getItem(product))
+    items.forEach((item) => {
+		cartQuantity += parseInt(localStorage.getItem(item))
     })
 
 	return cartQuantity
