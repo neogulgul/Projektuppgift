@@ -1,0 +1,59 @@
+@import "style.css";
+
+table {
+	width: 100%;
+	margin-top: 50px;
+	border-collapse: collapse;
+}
+
+th {
+	text-align: left;
+	padding-bottom: 20px;
+}
+
+th:first-child {
+	max-width: 150px;
+}
+
+tbody td {
+	padding: 20px 0;
+	border-top: 1px solid var(--foreground-alt);
+	border-bottom: 1px solid var(--foreground-alt);
+}
+
+td div {
+	display: flex;
+	align-items: center;
+}
+
+.selection-column img {
+	width: 80px;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	object-position: center;
+}
+
+.price-column {
+	position: relative;
+}
+
+.price-column svg {
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.price-column svg:hover {
+	fill: var(--warning);
+}
+
+tfoot td {
+	padding-top: 20px;
+}
+
+tfoot button {
+	margin-left: auto;
+}
+
+/* todo: make responsive */
