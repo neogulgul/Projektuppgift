@@ -26,8 +26,15 @@ const firstImageClone = heroImages[0].outerHTML
 heroImagesContainer.insertAdjacentHTML("afterbegin", lastImageClone)
 heroImagesContainer.insertAdjacentHTML("beforeend", firstImageClone)
 
+let clickable = true
+
 function arrow(direction) {
+	if (!clickable) {
+		return
+	}
+
     slideTime = 0
+	clickable = false
 
     if (direction === "left") {
         if (translation >= maxTranslation) return // preventing the slideshow from going out of sync
@@ -65,6 +72,7 @@ function arrow(direction) {
 
 heroImagesContainer.addEventListener("transitionend", () => {
     heroImagesContainer.style.transition = "none"
+	clickable = true
     if (translation === maxTranslation) {
         translation = -initialTranslation
         heroImagesContainer.style.transform = `translateX(${translation}vw)`
@@ -95,15 +103,17 @@ document.querySelectorAll(".dot").forEach((dot) => {
 		}
 
 		let distance = Math.abs(clickedId - currentId)
+		let direction
 
 		if (clickedId > currentId) {
-			for (let i = 0; i < distance; i++) {
-				arrow("right")
-			}
-		} else if (clickedId < currentId) {
-			for (let i = 0; i < distance; i++) {
-				arrow("left")
-			}
+			direction = "right"
+		} else {
+			direction = "left"
+		}
+
+		for (let i = 0; i < distance; i++) {
+			clickable = true
+			arrow(direction)
 		}
 	}
 })
