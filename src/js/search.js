@@ -16,10 +16,14 @@ let results = false
 
 // loads search results
 products.forEach((product) => {
+	if (searchValue === null || searchValue === "") {
+		return
+	}
+
 	let component = product.component.replace("-", " ")
 	let productInfo = product.name + product.manufacturer + component
 
-	if (productInfo.toLowerCase().includes(searchValue.toLowerCase()) && searchValue !== "") {
+	if (productInfo.toLowerCase().includes(searchValue.toLowerCase())) {
 		results = true
 		let rating = ``
 		for (let i = 0; i < 5; i++) {
