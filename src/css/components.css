@@ -76,7 +76,7 @@ td div {
 	color: var(--main);
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 800px) {
 	thead {
 		display: none;
 	}
@@ -100,7 +100,7 @@ td div {
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
 	tr {
 		display: flex;
 		flex-direction: column;
