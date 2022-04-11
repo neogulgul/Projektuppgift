@@ -1,10 +1,10 @@
-const components = ["CPU", "CPU Cooler", "Motherboard", "Memory", "Storage", "Graphics Card", "Power Supply", "Case"]
+const components = ["cpu", "cpu-cooler", "motherboard", "memory", "storage", "graphics-card", "power-supply", "case"]
 const tbody = document.querySelector("tbody")
 
 components.forEach((component) => {
-	let a = "A"
+	let a = "a"
 
-	if (["Memory", "Storage"].includes(component)) {
+	if (["memory", "storage"].includes(component)) {
 		a = ""
 	}
 
@@ -12,15 +12,15 @@ components.forEach((component) => {
 	<tr id="${component}">
 		<td>
 			<div class="component-column">
-				${component}
+				${component.replace("-", " ").replace("cpu", "CPU")}
 			</div>
 		</td>
 		<td colspan="2">
-			<div>
-				<a href="products/${component.toLowerCase().replace(" ", "-")}.html?selection">
+			<div class="choose-column">
+				<a href="components/${component}.html?selection">
 					<button>
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
-						Choose ${a} ${component}
+						Choose ${a} ${component.replace("-", " ").replace("cpu", "CPU")}
 					</button>
 				</a>
 			</div>
@@ -40,12 +40,12 @@ Object.keys(localStorage).forEach((item) => {
 				<div class="selection-column">
 					<img src="images/products/${row.id.toLowerCase().replace(" ", "-")}/${products[itemId].image}">
 					${products[itemId].name}
+					<svg class="remove" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-11.414L9.172 7.757 7.757 9.172 10.586 12l-2.829 2.828 1.415 1.415L12 13.414l2.828 2.829 1.415-1.415L13.414 12l2.829-2.828-1.415-1.415L12 10.586z"/></svg>
 				</div>
 			</td>
 			<td>
 				<div class="price-column">
 					$${products[itemId].price}
-					<svg class="remove" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-11.414L9.172 7.757 7.757 9.172 10.586 12l-2.829 2.828 1.415 1.415L12 13.414l2.828 2.829 1.415-1.415L13.414 12l2.829-2.828-1.415-1.415L12 10.586z"/></svg>
 				</div>
 			</td>`
 		}
@@ -62,21 +62,25 @@ removeButtons.forEach((button) => {
 		row.children[1].remove()
 		row.children[1].remove()
 
-		let a = "A"
+		let a = "a"
 
-		if (["Memory", "Storage"].includes(component)) {
+		if (["memory", "storage"].includes(component)) {
 			a = ""
 		}
 
 		row.innerHTML += `
 		<td colspan="2">
-			<a href="products/${component}.html?selection">
-				<button>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
-					Choose ${a} ${row.id}
-				</button>
-			</a>
+			<div class="choose-column">
+				<a href="components/${component}.html?selection">
+					<button>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
+						Choose ${a} ${component.replace("-", " ").replace("cpu", "CPU")}
+					</button>
+				</a>
+			</div>
 		</td>`
+
+		updateTotal()
 	}
 })
 
@@ -110,3 +114,20 @@ addButton.onclick = () => {
 		window.location.assign("cart.html")
 	}
 }
+
+function updateTotal() {
+	let sum = 0
+
+	Object.keys(localStorage).forEach((item) => {
+		if (components.includes(item)) {
+			let itemId = localStorage.getItem(item)
+			let price = products[itemId].price
+
+			sum += price
+		}
+	})
+
+	document.querySelector("#parts-to-cart span").innerText = "$" + sum
+}
+
+updateTotal()

@@ -15,15 +15,23 @@ th:first-child {
 	max-width: 150px;
 }
 
-tbody td {
-	padding: 20px 0;
+th:last-child {
+	text-align: right;
+}
+
+tbody tr {
 	border-top: 1px solid var(--foreground-alt);
 	border-bottom: 1px solid var(--foreground-alt);
 }
 
-td div {
+tbody td {
+	padding: 20px 0;
+}
+
+.selection-column {
 	display: flex;
 	align-items: center;
+	gap: 20px;
 }
 
 .selection-column img {
@@ -33,18 +41,26 @@ td div {
 	object-position: center;
 }
 
+.component-column, .choose-column button {
+	text-transform: capitalize;
+}
+
 .price-column {
+	text-align: right;
+}
+
+tr {
 	position: relative;
 }
 
-.price-column svg {
+.remove {
 	position: absolute;
-	right: 0;
+	right: -37.5px;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
-.price-column svg:hover {
+.remove:hover {
 	fill: var(--warning);
 }
 
@@ -52,8 +68,26 @@ tfoot td {
 	padding-top: 20px;
 }
 
-tfoot button {
+#parts-to-cart {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 20px;
+	max-width: 300px;
 	margin-left: auto;
 }
 
-/* todo: make responsive */
+#parts-to-cart button {
+	width: 100%;
+}
+
+@media screen and (max-width: 750px) {
+	thead {
+		display: none;
+	}
+
+	tbody td {
+		display: flex;
+		flex-direction: column;
+	}
+}
