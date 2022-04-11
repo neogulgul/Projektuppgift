@@ -39,7 +39,7 @@ tbody tr {
 .remove {
 	position: absolute;
 	top: calc(50% - 12.5px);
-	left: -37.5px;
+	right: -37.5px;
 	width: 25px;
 	height: 25px;
 	box-sizing: content-box;
@@ -84,8 +84,7 @@ tfoot td {
 }
 
 .arrows svg {
-	width: 20px;
-	height: 10px;
+	--length: 20px;
 	cursor: pointer;
 	transition: 0.3s;
 }

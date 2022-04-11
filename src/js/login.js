@@ -20,7 +20,7 @@ function verifyCredentials() {
 	}
 }
 
-if (localStorage.getItem("loginStatus") === username) {
+if (localStorage.getItem("loginStatus") !== null) {
 	form.style.display = "none"
 	document.querySelector("main").innerHTML += "<h2>You are already logged in.</h2>"
 }

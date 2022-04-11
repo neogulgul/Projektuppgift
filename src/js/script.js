@@ -1,7 +1,13 @@
 let path = ""
 
-if (window.location.pathname.includes("products")) {
+if (window.location.pathname.includes("/components/")) {
     path = "../"
+}
+
+let profile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4.987-3.744A7.966 7.966 0 0 0 12 20c1.97 0 3.773-.712 5.167-1.892A6.979 6.979 0 0 0 12.16 16a6.981 6.981 0 0 0-5.147 2.256zM5.616 16.82A8.975 8.975 0 0 1 12.16 14a8.972 8.972 0 0 1 6.362 2.634 8 8 0 1 0-12.906.187zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>`
+
+if (localStorage.getItem("loginStatus") !== null) {
+	profile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zM6.023 15.416C7.491 17.606 9.695 19 12.16 19c2.464 0 4.669-1.393 6.136-3.584A8.968 8.968 0 0 0 12.16 13a8.968 8.968 0 0 0-6.137 2.416zM12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>`
 }
 
 // header and footer
@@ -14,7 +20,7 @@ const header = `
 		</a>
 		<div id="icons">
 			<a href="${path}profile.html">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zM6.023 15.416C7.491 17.606 9.695 19 12.16 19c2.464 0 4.669-1.393 6.136-3.584A8.968 8.968 0 0 0 12.16 13a8.968 8.968 0 0 0-6.137 2.416zM12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+				${profile}
 			</a>
 			<a href="${path}cart.html" id="cart">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 6.414L.757 3.172l1.415-1.415L5.414 5h15.242a1 1 0 0 1 .958 1.287l-2.4 8a1 1 0 0 1-.958.713H6v2h11v2H5a1 1 0 0 1-1-1V6.414zM5.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm12 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
@@ -41,42 +47,42 @@ const header = `
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 8v12.993A1 1 0 0 1 20.007 22H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8zm-2 1h-5V4H5v16h14V9zM8 7h3v2H8V7zm0 4h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>
 					Build Guides
 				</a>
-				<a class="browse-products icon-text">
+				<a class="browse-components icon-text">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 18h12V6H6v12zm8 2h-4v2H8v-2H5a1 1 0 0 1-1-1v-3H2v-2h2v-4H2V8h2V5a1 1 0 0 1 1-1h3V2h2v2h4V2h2v2h3a1 1 0 0 1 1 1v3h2v2h-2v4h2v2h-2v3a1 1 0 0 1-1 1h-3v2h-2v-2zM8 8h8v8H8V8z"/></svg>
-					Browse Products
+					Browse Components
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"/></svg>
 				</a>
 			</nav>
-			<div class="browse-products">
-				<a href="${path}products/cpu.html" class="product-card">
+			<div class="browse-components">
+				<a href="${path}components/cpu.html" class="component-card">
 					<img src="${path}images/components/cpu.png">
 					CPU
 				</a>
-				<a href="${path}products/cpu-cooler.html" class="product-card">
+				<a href="${path}components/cpu-cooler.html" class="component-card">
 					<img src="${path}images/components/cpu-cooler.png">
 					CPU Cooler
 				</a>
-				<a href="${path}products/motherboard.html" class="product-card">
+				<a href="${path}components/motherboard.html" class="component-card">
 					<img src="${path}images/components/motherboard.png">
 					Motherboard
 				</a>
-				<a href="${path}products/memory.html" class="product-card">
+				<a href="${path}components/memory.html" class="component-card">
 					<img src="${path}images/components/memory.png">
 					Memory
 				</a>
-				<a href="${path}products/storage.html" class="product-card">
+				<a href="${path}components/storage.html" class="component-card">
 					<img src="${path}images/components/storage.png">
 					Storage
 				</a>
-				<a href="${path}products/graphics-card.html" class="product-card">
+				<a href="${path}components/graphics-card.html" class="component-card">
 					<img src="${path}images/components/graphics-card.png">
 					Graphics Card
 				</a>
-				<a href="${path}products/power-supply.html" class="product-card">
+				<a href="${path}components/power-supply.html" class="component-card">
 					<img src="${path}images/components/power-supply.png">
 					Power Supply
 				</a>
-				<a href="${path}products/case.html" class="product-card">
+				<a href="${path}components/case.html" class="component-card">
 					<img src="${path}images/components/case.png">
 					Case
 				</a>
@@ -93,19 +99,20 @@ const footer = `
 			<a href="${path}index.html">Home</a>
 			<a href="${path}system-builder.html">System Builder</a>
 			<a href="${path}build-guides.html">Build Guides</a>
+			<a href="${path}components.html">Components</a>
 			<a href="${path}profile.html">Profile</a>
 			<a href="${path}cart.html">Cart</a>
 		</div>
 		<div class="directory-column">
-			<h3>Products</h3>
-			<a href="${path}products/cpu.html">CPU</a>
-			<a href="${path}products/cpu-cooler.html">CPU Cooler</a>
-			<a href="${path}products/motherboard.html">Motherboard</a>
-			<a href="${path}products/memory.html">Memory</a>
-			<a href="${path}products/storage.html">Storage</a>
-			<a href="${path}products/graphics-card.html">Graphics Card</a>
-			<a href="${path}products/power-supply.html">Power Supply</a>
-			<a href="${path}products/case.html">Case</a>
+			<h3>Components</h3>
+			<a href="${path}components/cpu.html">CPU</a>
+			<a href="${path}components/cpu-cooler.html">CPU Cooler</a>
+			<a href="${path}components/motherboard.html">Motherboard</a>
+			<a href="${path}components/memory.html">Memory</a>
+			<a href="${path}components/storage.html">Storage</a>
+			<a href="${path}components/graphics-card.html">Graphics Card</a>
+			<a href="${path}components/power-supply.html">Power Supply</a>
+			<a href="${path}components/case.html">Case</a>
 		</div>
 	</section>
 	<a href="${path}contact.html">
@@ -174,18 +181,18 @@ cross.onmousedown = (event) => {
 	}
 }
 
-// browse products drop-down
-const browseProductsLink = document.querySelector("a.browse-products")
-const browseProductsContainer = document.querySelector("div.browse-products")
+// browse components drop-down
+const browseComponentsLink = document.querySelector("a.browse-components")
+const browseComponentsContainer = document.querySelector("div.browse-components")
 
-browseProductsLink.onmousedown = (event) => {
+browseComponentsLink.onmousedown = (event) => {
 	if (leftClick(event)) {
-		browseProductsLink.classList.toggle("active")
-    	browseProductsContainer.classList.toggle("active")
+		browseComponentsLink.classList.toggle("active")
+    	browseComponentsContainer.classList.toggle("active")
 	}
 }
 
-browseProductsContainer.onmousedown = (event) => {
+browseComponentsContainer.onmousedown = (event) => {
     event.stopPropagation()
 }
 
@@ -199,9 +206,9 @@ document.body.onmousedown = (event) => {
 		searchAndNavbar.classList.remove("active")
 	}
 
-	if (event.target !== browseProductsLink && !browseProductsLink.contains(event.target)) {
-		browseProductsLink.classList.remove("active")
-        browseProductsContainer.classList.remove("active")
+	if (event.target !== browseComponentsLink && !browseComponentsLink.contains(event.target)) {
+		browseComponentsLink.classList.remove("active")
+        browseComponentsContainer.classList.remove("active")
 	}
 }
 

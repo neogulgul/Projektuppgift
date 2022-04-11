@@ -42,8 +42,11 @@ body {
 }
 
 svg {
-    width: 20px;
-    height: 20px;
+	--length: 20px;
+    width: var(--length);
+	min-width: var(--length);
+    height: var(--length);
+	min-height: var(--length);
     fill: var(--foreground);
 }
 
@@ -52,8 +55,8 @@ button {
 	justify-content: center;
 	align-items: center;
 	gap: 5px;
-	height: 35px;
-    padding: 0 20px;
+	height: 2.5em;
+    padding: 0 2em;
     border: 1px solid var(--foreground);
     border-radius: 5px;
     cursor: pointer;
@@ -172,8 +175,7 @@ header {
 }
 
 #icons svg {
-	width: 35px;
-	height: 35px;
+	--length: 35px;
 	padding: 10px;
 	box-sizing: content-box;
 	transition: 0.3s;
@@ -279,21 +281,21 @@ header {
 	fill: var(--main);
 }
 
-a.browse-products {
+a.browse-components {
 	cursor: pointer;
 }
 
-a.browse-products.active svg {
+a.browse-components.active svg {
 	fill: var(--main);
 }
 
-a.browse-products.active svg:last-of-type {
+a.browse-components.active svg:last-of-type {
 	transform: rotate(180deg);
 }
 
-/* browse products */
+/* browse components */
 
-div.browse-products {
+div.browse-components {
 	position: absolute;
 	left: 0;
 	z-index: 5;
@@ -308,11 +310,11 @@ div.browse-products {
 	background-color: var(--background-alt);
 }
 
-div.browse-products.active {
+div.browse-components.active {
 	transform: translateY(0);
 }
 
-.product-card {
+.component-card {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -325,13 +327,13 @@ div.browse-products.active {
 	background-color: var(--background);
 }
 
-.product-card:hover {
+.component-card:hover {
 	border-color: var(--main);
 	box-shadow: inset 0 0 0 2px var(--main);
 	background-color: var(--main-alt);
 }
 
-.product-card img {
+.component-card img {
 	width: 150px;
 	aspect-ratio: 1 / 1;
 	object-fit: contain;

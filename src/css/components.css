@@ -60,6 +60,22 @@ td div {
     justify-content: space-between;
 }
 
+#component-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 50px;
+	margin-top: 50px;
+}
+
+#component-cards .component-card {
+	background-color: var(--background-alt);
+}
+
+#component-cards .component-card:hover {
+	color: var(--main);
+}
+
 @media screen and (max-width: 850px) {
 	thead {
 		display: none;
