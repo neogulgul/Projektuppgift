@@ -21,7 +21,7 @@ products.forEach((product) => {
 	}
 
 	let component = product.component.replace("-", " ")
-	let productInfo = product.name + product.manufacturer + component
+	let productInfo = product.name + " " + product.manufacturer + " " + component
 
 	if (productInfo.toLowerCase().includes(searchValue.toLowerCase())) {
 		results = true

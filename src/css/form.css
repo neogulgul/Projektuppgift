@@ -1,18 +1,25 @@
 @import "style.css";
 
+/* used in contact.html and login.html */
+
 main {
-	margin-top: 50px;
 	padding: 0;
+	padding-bottom: 50px;
 }
 
-#logo {
-	margin-bottom: 50px;
+#login #logo {
+	margin: 50px 0;
+}
+
+main p {
+	margin: 25px;
 }
 
 form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 12.5px;
 	width: 100%;
 	max-width: 600px;
 	padding: 50px;
@@ -38,7 +45,6 @@ label {
 	align-items: center;
 	gap: 5px;
 	width: 100%;
-	margin-bottom: 10px;
 }
 
 #autofill {
@@ -62,9 +68,9 @@ label {
 	fill: var(--main);
 }
 
-input {
-	margin-bottom: 25px;
+form input {
 	padding: 0 10px;
+	margin-bottom: 12.5px;
 	width: 100%;
 	height: 50px;
 	border-radius: 5px;
@@ -73,23 +79,24 @@ input {
 	background-color: var(--background);
 }
 
-input[type="password"] {
+form input[type="password"] {
 	font: small-caption;
 }
 
-input[type="submit"] {
+form input[type="submit"] {
 	cursor: pointer;
 	transition: 0.3s;
+	margin-bottom: 0;
 	background-color: var(--main);
 	color: var(--foreground);
 }
 
-input[type="submit"]:hover {
+form input[type="submit"]:hover {
 	background-color: var(--main-alt);
 	color: var(--main-alt);
 }
 
-input[type="submit"]:active {
+form input[type="submit"]:active {
 	opacity: 0.5;
 }
 
@@ -102,6 +109,17 @@ input[type="submit"]:active {
 	padding-right: 50px;
 }
 
+form textarea {
+	padding: 10px;
+	width: 100%;
+	resize: none;
+	outline: none;
+	margin-bottom: 12.5px;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--background);
+}
+
 #password-container svg {
 	position: absolute;
 	top: calc((50px - 20px) / 2);
@@ -111,7 +129,8 @@ input[type="submit"]:active {
 
 #invalid {
 	display: none;
-	margin-bottom: 25px;
+	margin-top: 0;
+	margin-bottom: 12.5px;
 	text-align: center;
 	color: var(--warning);
 }

@@ -121,7 +121,7 @@ const footer = `
 			Contact us
 		</button>
 	</a>
-	Copyright &copy; 2022 PCSpace
+	&copy; 2022 PCSpace
 </footer>`
 
 const main = document.querySelector("main")

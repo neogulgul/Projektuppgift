@@ -6,7 +6,6 @@ const anchors = document.querySelectorAll("form a")
 const autofill = document.querySelector("#autofill")
 const usernameInput = document.querySelector('input[type="text"]')
 const passwordInput = document.querySelector('input[type="password"]')
-const textInputs = [usernameInput, passwordInput]
 const submitInput = document.querySelector('input[type="submit"]')
 const invalid = document.querySelector("#invalid")
 
@@ -24,14 +23,6 @@ if (localStorage.getItem("loginStatus") !== null) {
 	form.style.display = "none"
 	document.querySelector("main").innerHTML += "<h2>You are already logged in.</h2>"
 }
-
-textInputs.forEach((input) => {
-	input.onkeydown = (event) => {
-		if (event.key === "Enter") {
-			verifyCredentials()
-		}
-	}
-})
 
 submitInput.onclick = () => {
 	verifyCredentials()
