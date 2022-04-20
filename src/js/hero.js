@@ -118,6 +118,25 @@ document.querySelectorAll(".dot").forEach((dot) => {
 	}
 })
 
+// detect swipe
+let touchstartX = 0
+let touchendX = 0
+
+heroImagesContainer.addEventListener("touchstart", (event) => {
+    touchstartX = event.changedTouches[0].screenX
+})
+
+heroImagesContainer.addEventListener("touchend", (event) => {
+    touchendX = event.changedTouches[0].screenX
+
+    if (touchendX < touchstartX) {
+        arrow("right")
+    } else if (touchendX > touchstartX) {
+        arrow("left")
+    }
+})
+
+// automatic slide change
 let slideTime = 0
 const changeSlide = 10 // seconds
 
