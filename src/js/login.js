@@ -21,7 +21,8 @@ function verifyCredentials() {
 
 if (localStorage.getItem("loginStatus") !== null) {
 	form.style.display = "none"
-	document.querySelector("main").innerHTML += "<h2>You are already logged in.</h2>"
+	document.querySelector("main").innerHTML +=
+		"<h2>You are already logged in.</h2>"
 }
 
 submitInput.onclick = () => {

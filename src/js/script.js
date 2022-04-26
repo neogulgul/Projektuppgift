@@ -1,7 +1,7 @@
 let path = ""
 
 if (window.location.pathname.includes("/components/")) {
-    path = "../"
+	path = "../"
 }
 
 let profile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4.987-3.744A7.966 7.966 0 0 0 12 20c1.97 0 3.773-.712 5.167-1.892A6.979 6.979 0 0 0 12.16 16a6.981 6.981 0 0 0-5.147 2.256zM5.616 16.82A8.975 8.975 0 0 1 12.16 14a8.972 8.972 0 0 1 6.362 2.634 8 8 0 1 0-12.906.187zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>`
@@ -163,9 +163,9 @@ input.onmousedown = () => {
 }
 
 input.onkeydown = (event) => {
-    if (event.key === "Enter") {
+	if (event.key === "Enter") {
 		assignSearch()
-    }
+	}
 }
 
 search.onclick = () => {
@@ -183,32 +183,41 @@ cross.onmousedown = (event) => {
 
 // browse components drop-down
 const browseComponentsLink = document.querySelector("a.browse-components")
-const browseComponentsContainer = document.querySelector("div.browse-components")
+const browseComponentsContainer = document.querySelector(
+	"div.browse-components"
+)
 
 browseComponentsLink.onmousedown = (event) => {
 	if (leftClick(event)) {
 		browseComponentsLink.classList.toggle("active")
-    	browseComponentsContainer.classList.toggle("active")
+		browseComponentsContainer.classList.toggle("active")
 	}
 }
 
 browseComponentsContainer.onmousedown = (event) => {
-    event.stopPropagation()
+	event.stopPropagation()
 }
 
 document.body.onmousedown = (event) => {
-    if (event.target !== input) {
-        cross.style.display = "none"
-    }
+	if (event.target !== input) {
+		cross.style.display = "none"
+	}
 
-	if (!hamburger.contains(event.target) && event.target !== searchAndNavbar && !searchAndNavbar.contains(event.target)) {
+	if (
+		!hamburger.contains(event.target) &&
+		event.target !== searchAndNavbar &&
+		!searchAndNavbar.contains(event.target)
+	) {
 		hamburger.classList.remove("active")
 		searchAndNavbar.classList.remove("active")
 	}
 
-	if (event.target !== browseComponentsLink && !browseComponentsLink.contains(event.target)) {
+	if (
+		event.target !== browseComponentsLink &&
+		!browseComponentsLink.contains(event.target)
+	) {
 		browseComponentsLink.classList.remove("active")
-        browseComponentsContainer.classList.remove("active")
+		browseComponentsContainer.classList.remove("active")
 	}
 }
 
@@ -235,20 +244,20 @@ function getCartQuantity() {
 
 	const items = itemsInCart()
 
-    items.forEach((item) => {
+	items.forEach((item) => {
 		cartQuantity += parseInt(localStorage.getItem(item))
-    })
+	})
 
 	return cartQuantity
 }
 
 function updateCart() {
-    if (getCartQuantity() > 0) {
-        cartNotice.innerText = getCartQuantity()
-        cartNotice.style.display = "flex"
-    } else {
-        cartNotice.style.display = "none"
-    }
+	if (getCartQuantity() > 0) {
+		cartNotice.innerText = getCartQuantity()
+		cartNotice.style.display = "flex"
+	} else {
+		cartNotice.style.display = "none"
+	}
 }
 
 updateCart()

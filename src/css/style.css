@@ -1,53 +1,55 @@
 @font-face {
-    font-family: "Montserrat";
-    src: url(../fonts/Montserrat/static/Montserrat-Medium.ttf);
+	font-family: "Montserrat";
+	src: url(../fonts/Montserrat/static/Montserrat-Medium.ttf);
 }
 
 :root {
-    --background:       #282a36;
-    --background-alt:   #21222c;
-    --foreground:       #f8f8f2;
-    --foreground-alt:   #929292;
-    --main:             #eda920;
-    --main-alt:         #eda92020;
-	--warning:			#cc3d3f;
+	--background: #282a36;
+	--background-alt: #21222c;
+	--foreground: #f8f8f2;
+	--foreground-alt: #929292;
+	--main: #eda920;
+	--main-alt: #eda92020;
+	--warning: #cc3d3f;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-    font-family: "Montserrat";
-    font-size: 16px;
-    font-weight: normal;
-    color: var(--foreground);
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	font-family: "Montserrat";
+	font-size: 16px;
+	font-weight: normal;
+	color: var(--foreground);
 }
 
-html { /* hides scrollbar on firefox */
-    scrollbar-width: none;
+html {
+	/* hides scrollbar on firefox */
+	scrollbar-width: none;
 }
 
-html::-webkit-scrollbar { /* hides scrollbar on chrome */
-    display: none;
+html::-webkit-scrollbar {
+	/* hides scrollbar on chrome */
+	display: none;
 }
 
 #site-wrapper {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-    overflow: hidden;
-    background-color: var(--background);
+	overflow: hidden;
+	background-color: var(--background);
 }
 
 svg {
 	--length: 20px;
-    width: var(--length);
+	width: var(--length);
 	min-width: var(--length);
-    height: var(--length);
+	height: var(--length);
 	min-height: var(--length);
-    fill: var(--foreground);
+	fill: var(--foreground);
 }
 
 button {
@@ -56,22 +58,22 @@ button {
 	align-items: center;
 	gap: 5px;
 	height: 2.5em;
-    padding: 0 2em;
-    border: 1px solid var(--foreground);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: var(--background-alt);
+	padding: 0 2em;
+	border: 1px solid var(--foreground);
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+	background-color: var(--background-alt);
 }
 
 button:hover {
-    border-color: var(--main);
-    color: var(--main);
+	border-color: var(--main);
+	color: var(--main);
 }
 
 button:active {
-    border-color: var(--main-alt);
-    color: var(--main-alt);
+	border-color: var(--main-alt);
+	color: var(--main-alt);
 }
 
 button svg {
@@ -91,8 +93,8 @@ p {
 }
 
 h1 {
-    font-size: 3em;
-    text-transform: capitalize;
+	font-size: 3em;
+	text-transform: capitalize;
 }
 
 h2 {
@@ -102,8 +104,8 @@ h2 {
 }
 
 h3 {
-    font-size: 0.8em;
-    text-transform: uppercase;
+	font-size: 0.8em;
+	text-transform: uppercase;
 }
 
 h4 {
@@ -112,16 +114,16 @@ h4 {
 }
 
 #banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    padding: 25px;
-    font-size: 2em;
-    font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	padding: 25px;
+	font-size: 2em;
+	font-weight: bold;
 	text-align: center;
-    text-transform: capitalize;
-    background-color: var(--background-alt);
+	text-transform: capitalize;
+	background-color: var(--background-alt);
 }
 
 /* ==================================================
@@ -345,9 +347,9 @@ div.browse-components.active {
 ================================================== */
 
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	padding: 50px;
 	padding-top: 0;
 }
@@ -357,13 +359,13 @@ main {
 ================================================== */
 
 footer {
-    display: flex;
+	display: flex;
 	flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 	gap: 50px;
 	margin-top: auto;
-    padding: 50px;
+	padding: 50px;
 	background-color: var(--background-alt);
 }
 

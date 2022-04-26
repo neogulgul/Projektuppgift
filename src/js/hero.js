@@ -7,7 +7,7 @@ const heroImages = document.querySelector("#hero-slides").children
 
 // creating dots
 for (let i = 0; i < heroImages.length; i++) {
-    dotsContainer.innerHTML += `<div id="${i}" class="dot"></div>`
+	dotsContainer.innerHTML += `<div id="${i}" class="dot"></div>`
 }
 dots[0].classList.add("fill")
 
@@ -33,61 +33,61 @@ function arrow(direction) {
 		return
 	}
 
-    slideTime = 0
+	slideTime = 0
 	clickable = false
 
-    if (direction === "left") {
-        if (translation >= maxTranslation) return // preventing the slideshow from going out of sync
-        translation += 100
-    } else if (direction === "right") {
-        if (translation <= minTranslation) return // preventing the slideshow from going out of sync
-        translation -= 100
-    }
+	if (direction === "left") {
+		if (translation >= maxTranslation) return // preventing the slideshow from going out of sync
+		translation += 100
+	} else if (direction === "right") {
+		if (translation <= minTranslation) return // preventing the slideshow from going out of sync
+		translation -= 100
+	}
 
-    // animation
-    heroImagesContainer.style.transition = "0.5s"
-    heroImagesContainer.style.transform = `translateX(${translation}vw)`
+	// animation
+	heroImagesContainer.style.transition = "0.5s"
+	heroImagesContainer.style.transform = `translateX(${translation}vw)`
 
-    // dots
-    for (let i = 0; i < dots.length; i++) {
-        if (dots[i].classList.contains("fill")) {
-            dots[i].classList.remove("fill")
-            if (direction === "left") {
-                if (i === 0) {
-                    dots[dots.length - 1].classList.add("fill")
-                } else {
-                    dots[i - 1].classList.add("fill")
-                }
-            } else if (direction === "right") {
-                if (i === dots.length - 1) {
-                    dots[0].classList.add("fill")
-                } else {
-                    dots[i + 1].classList.add("fill")
-                }
-            }
-            break
-        }
-    }
+	// dots
+	for (let i = 0; i < dots.length; i++) {
+		if (dots[i].classList.contains("fill")) {
+			dots[i].classList.remove("fill")
+			if (direction === "left") {
+				if (i === 0) {
+					dots[dots.length - 1].classList.add("fill")
+				} else {
+					dots[i - 1].classList.add("fill")
+				}
+			} else if (direction === "right") {
+				if (i === dots.length - 1) {
+					dots[0].classList.add("fill")
+				} else {
+					dots[i + 1].classList.add("fill")
+				}
+			}
+			break
+		}
+	}
 }
 
 heroImagesContainer.addEventListener("transitionend", () => {
-    heroImagesContainer.style.transition = "none"
+	heroImagesContainer.style.transition = "none"
 	clickable = true
-    if (translation === maxTranslation) {
-        translation = -initialTranslation
-        heroImagesContainer.style.transform = `translateX(${translation}vw)`
-    } else if (translation === minTranslation) {
-        translation = initialTranslation
-        heroImagesContainer.style.transform = `translateX(${translation}vw)`
-    }
+	if (translation === maxTranslation) {
+		translation = -initialTranslation
+		heroImagesContainer.style.transform = `translateX(${translation}vw)`
+	} else if (translation === minTranslation) {
+		translation = initialTranslation
+		heroImagesContainer.style.transform = `translateX(${translation}vw)`
+	}
 })
 
 leftArrow.onclick = () => {
-    arrow("left")
+	arrow("left")
 }
 
 rightArrow.onclick = () => {
-    arrow("right")
+	arrow("right")
 }
 
 document.querySelectorAll(".dot").forEach((dot) => {
@@ -123,17 +123,17 @@ let touchstartX = 0
 let touchendX = 0
 
 heroImagesContainer.addEventListener("touchstart", (event) => {
-    touchstartX = event.changedTouches[0].screenX
+	touchstartX = event.changedTouches[0].screenX
 })
 
 heroImagesContainer.addEventListener("touchend", (event) => {
-    touchendX = event.changedTouches[0].screenX
+	touchendX = event.changedTouches[0].screenX
 
-    if (touchendX < touchstartX) {
-        arrow("right")
-    } else if (touchendX > touchstartX) {
-        arrow("left")
-    }
+	if (touchendX < touchstartX) {
+		arrow("right")
+	} else if (touchendX > touchstartX) {
+		arrow("left")
+	}
 })
 
 // automatic slide change
@@ -141,8 +141,8 @@ let slideTime = 0
 const changeSlide = 10 // seconds
 
 setInterval(() => {
-    slideTime += 1
-    if (slideTime === changeSlide) {
-        arrow("right")
-    }
+	slideTime += 1
+	if (slideTime === changeSlide) {
+		arrow("right")
+	}
 }, 1000)

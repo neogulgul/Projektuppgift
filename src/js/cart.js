@@ -43,7 +43,8 @@ function updateTotal() {
 function cartDisplay() {
 	if (getCartQuantity() === 0) {
 		document.querySelector("table").style.display = "none"
-		document.querySelector("main").innerHTML += "<h2>Your cart is currently empty.</h2>"
+		document.querySelector("main").innerHTML +=
+			"<h2>Your cart is currently empty.</h2>"
 	}
 }
 
@@ -56,11 +57,13 @@ const arrows = document.querySelectorAll(".arrows svg")
 arrows.forEach((arrow) => {
 	arrow.onmousedown = (event) => {
 		if (leftClick(event)) {
-			let itemRow = arrow.parentElement.parentElement.parentElement.parentElement
+			let itemRow =
+				arrow.parentElement.parentElement.parentElement.parentElement
 			let itemId = itemRow.id
 			let item = products[parseInt(itemId)]
 			let quantity = parseInt(localStorage.getItem(itemId))
-			let subTotalContainer = itemRow.getElementsByClassName("subtotal-column")[0]
+			let subTotalContainer =
+				itemRow.getElementsByClassName("subtotal-column")[0]
 
 			if (arrow.classList.contains("up")) {
 				quantity += 1
@@ -71,7 +74,8 @@ arrows.forEach((arrow) => {
 			if (quantity > 0) {
 				localStorage.setItem(itemId, quantity)
 				subTotalContainer.innerText = "$" + item.price * quantity
-				arrow.parentElement.parentElement.children[1].innerText = quantity
+				arrow.parentElement.parentElement.children[1].innerText =
+					quantity
 			} else {
 				localStorage.removeItem(itemId)
 				itemRow.remove()
@@ -88,7 +92,8 @@ const removeButtons = document.querySelectorAll(".remove")
 
 removeButtons.forEach((button) => {
 	button.onclick = () => {
-		let itemRow = button.parentElement.parentElement.parentElement.parentElement
+		let itemRow =
+			button.parentElement.parentElement.parentElement.parentElement
 		let itemId = itemRow.id
 
 		localStorage.removeItem(itemId)

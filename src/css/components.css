@@ -7,7 +7,7 @@
 table {
 	width: 100%;
 	margin-top: 50px;
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 tbody tr {
@@ -21,13 +21,13 @@ th {
 }
 
 td {
-    width: calc(100% / 3);
-    height: 150px;
+	width: calc(100% / 3);
+	height: 150px;
 }
 
 td div {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 /* name */
@@ -38,26 +38,26 @@ td div {
 
 .name-column img {
 	padding-right: 20px;
-    height: 80px;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    object-position: center;
+	height: 80px;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	object-position: center;
 }
 
 /* rating */
 
 .star {
-    fill: var(--main);
+	fill: var(--main);
 }
 
 .empty {
-    fill: var(--foreground-alt);
+	fill: var(--foreground-alt);
 }
 
 /* price */
 .price-column {
 	gap: 20px;
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 #component-cards {

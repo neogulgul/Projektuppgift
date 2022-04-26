@@ -57,9 +57,9 @@ tbody tr {
 }
 
 .product-column img {
-    width: 100px;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
+	width: 100px;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
 }
 
 tfoot td {

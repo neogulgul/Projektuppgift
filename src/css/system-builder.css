@@ -41,7 +41,8 @@ tbody td {
 	object-position: center;
 }
 
-.component-column, .choose-column button {
+.component-column,
+.choose-column button {
 	text-transform: capitalize;
 }
 
