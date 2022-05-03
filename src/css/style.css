@@ -39,8 +39,13 @@ html::-webkit-scrollbar {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	overflow: hidden;
+	overflow-x: hidden;
+	scrollbar-width: none; /* hides scrollbar on firefox */
 	background-color: var(--background);
+}
+
+#site-wrapper::-webkit-scrollbar {
+	display: none; /* hides scrollbar on chrome */
 }
 
 svg {
